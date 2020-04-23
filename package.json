@@ -1,0 +1,19 @@
+{
+  "name": "mindmatch",
+  "version": "1.0.0",
+  "description": "SE Lab-Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MindMatch"
+  ],
+  "author": "Akhil 18CS10070",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1"
+  }
+}
