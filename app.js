@@ -29,18 +29,25 @@
     //get request to server
     app.get("/", function(req,res){
         //sending information from server side
-        res.sendFile(__dirname + "/index.html");
+        res.render("index", {});
+        // res.sendFile(__dirname + "/index.html");
     });
 
 
     app.get("/login", function(req,res){
-
+        res.render('login', {});
     });
     app.get("/register", function(req,res){
-
+        res.render('register',{});
     });
     app.get("/admin", function(req,res){
-
+        res.render('admin-login',{});
+    });
+    app.get("/about", function(req,res){
+        res.render('about',{});
+    });
+    app.get("/contact", function(req,res){
+        res.render('contact',{});
     });
 
 

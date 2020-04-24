@@ -1,3 +1,16 @@
+html {
+    height:100%;
+}
 body{
-    margin: 10px;
+    min-height:100%;
+}
+.navbar-brand{
+    margin-right: 6%;
+}
+.left{
+    margin-right: 15%;
+}
+
+footer p {
+    text-align: center;
 }
