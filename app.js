@@ -2,6 +2,7 @@
 
     const express = require('express');
     const bodyParser = require('body-parser');
+    const mongoose = require('mongoose');
 
     //setup server
     const app = express();
@@ -9,8 +10,21 @@
     app.use(bodyParser.urlencoded({extended:true}));
     app.use(express.static("public"));   // to correctly send the images and css files
 
+    // making a local database named mindmatchDB
+    mongoose.connect( "mongodb://localhost:27017/MindMatchDB", { useNewUrlParser: true, useUnifiedTopology: true } );
 
-    
+    // making a schema for the user info
+    const userSchema = new mongoose.Schema({
+        nameOfUser : String,
+        emailOfUser : String,
+        password : String
+    });
+
+    // making a model of this userSchema which will represent a collection in MindMatchDB database
+    const User = new mongoose.model("User", userSchema); // this will be cleverly converted to plural
+
+
+
 
     //get request to server
     app.get("/", function(req,res){
@@ -19,9 +33,15 @@
     });
 
 
+    app.get("/login", function(req,res){
 
+    });
+    app.get("/register", function(req,res){
 
+    });
+    app.get("/admin", function(req,res){
 
+    });
 
 
     //start listning (just to turn on the server)
