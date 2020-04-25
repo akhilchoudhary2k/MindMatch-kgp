@@ -1,5 +1,6 @@
     //jshint esversion:6
 
+    require('dotenv').config();
     const express = require('express');
     const ejs = require('ejs');
     const bodyParser = require('body-parser');
@@ -16,7 +17,7 @@
     app.use(express.static("public"));   // to correctly send the images and css files
 
     app.use(session({
-        secret: "ourLittleSecretKey.",
+        secret: process.env.SECRET_KEY,
         resave: false,
         saveUninitialized: false
     }));
@@ -251,19 +252,6 @@
             res.redirect('/login');
         }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //start listning (just to turn on the server)
