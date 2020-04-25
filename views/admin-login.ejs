@@ -1,8 +1,27 @@
 <%- include('partials/index-header') -%>
 
-    <div class="container">
-        <h2 class="heading" >AdminLogin</h2>
+<div class="box">
+    <div class="form-group">
+        <h1 class="heading">Admin-Login</h1>
     </div>
+    <form class="" action="/adminlogin" method="post" >
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" class="form-control" name="" value="" placeholder="Enter your secret-Key">
+        </div>
+        <div class="form-group">
+            <button type="submit" class=" form-control btn btn-success btn-lg space" name="button">Log-In</button>
+        </div>
+
+        <p class="center" >
+            Having problem? <a href="/contact">Contact Us</a>
+        </p>
+        <p class="center">
+            Not Admin? <a href="/login">User Login</a>
+        </p>
+
+    </form>
+</div>
 
 
 <%- include('partials/index-footer') -%>

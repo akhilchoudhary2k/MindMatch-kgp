@@ -4,6 +4,34 @@ html {
 body{
     min-height:100%;
 }
+.center{
+    text-align: center;
+}
+.heading{
+    text-align: center;
+    /* text-decoration: underline; */
+}
+.box{
+    width: 30%;
+    margin: 50px auto;
+    padding: 30px;
+    padding-bottom: 8px;
+    border-radius: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+input[type=text]{
+    background-color:#f2f2f2;
+}
+input[type=password]{
+    background-color:#f2f2f2;
+}
+.space{
+    margin-top: 30px;
+    /* margin-bottom: 10px; */
+}
+label{
+    font-weight: 600;
+}
 .navbar-brand{
     margin-right: 6%;
 }

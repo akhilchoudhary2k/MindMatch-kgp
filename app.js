@@ -40,7 +40,7 @@
     app.get("/register", function(req,res){
         res.render('register',{});
     });
-    app.get("/admin", function(req,res){
+    app.get("/adminlogin", function(req,res){
         res.render('admin-login',{});
     });
     app.get("/about", function(req,res){

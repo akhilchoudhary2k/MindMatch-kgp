@@ -1,7 +1,35 @@
 <%- include('partials/index-header') -%>
 
-    <div class="container">
-        <h2 class="heading" >Register</h2>
+
+
+    <div class="box">
+        <h1 class="heading">Register yourself</h1>
+        <form class="" action="/register" method="post">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" name="" value="" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="">Email-address</label>
+                <input type="text" class="form-control" name="" value="" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" class="form-control" name="" value="" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <label for="">Confirm Password</label>
+                <input type="password" class="form-control" name="" value="" placeholder="Enter your password again">
+            </div>
+            <div class="form-group">
+                <button type="submit" class=" form-control btn btn-success btn-lg space" name="button">Register</button>
+            </div>
+
+            <p class="center" >
+                Already have an account?
+                <a href="/login">Sign-In</a>
+            </p>
+        </form>
     </div>
 
 
