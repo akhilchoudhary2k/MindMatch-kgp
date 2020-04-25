@@ -67,6 +67,9 @@
     app.get("/contact", function(req,res){
         res.render('contact',{});
     });
+    app.get("/help", function(req,res){
+        res.send("Will make it");
+    });
 
     app.get("/logout", function(req,res){
         req.logout();

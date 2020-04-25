@@ -4,11 +4,36 @@
 <head>
     <meta charset="utf-8">
     <title>Home</title>
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
-
 <body>
+
+    <!-- navbar for logged in user -->
+    <nav class="above navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/UserHome"> MindMatch </a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active rightSpace"> <a class="nav-link" href="/UserHome">My Home</a> </li>
+            <li class="nav-item active rightSpace"> <a class="nav-link" href="/help">Help</a> </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"> <a href="/logout" class="btn btn-danger">Logout</a> </li>
+        </ul>
+    </nav>
+
+
+    <!-- Side navigation -->
+    <div class="makeSpaceAbove sidenav ">
+        <a href="#">Get Suggestions</a>
+        <a href="#">Update details</a>
+        <a href="#">Chat/Messages</a>
+        <a href="#">Search</a>
+        <a href="">Privacy Settings</a>
+    </div>
+
+    <!-- Page content -->
+    <div class="main">
+        ...
