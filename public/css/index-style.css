@@ -4,6 +4,9 @@ html {
 body{
     min-height:100%;
 }
+.bg-light{
+    background-color: #f8f9fa!important
+}
 .center{
     text-align: center;
 }
@@ -12,6 +15,7 @@ body{
     /* text-decoration: underline; */
 }
 .box{
+    background-color: white;
     width: 30%;
     margin: 50px auto;
     padding: 30px;

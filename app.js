@@ -30,8 +30,36 @@
     // making a schema for the user info
     const userSchema =  mongoose.Schema({
         username : String,
-        // email : String,
-        password : String
+        fname: String,
+        lname: String,
+        email : String,
+        password : String,
+        registered: { type: Date, default: Date.now },
+        age: Number,
+        gender: String,
+        department: String,
+        cgpa: mongoose.Decimal128,
+        hometown: String,
+        coaching: String,
+        jeerank: Number,
+        fromkota: Boolean,
+        eaa: String,
+        sportsvalue: mongoose.Decimal128,
+        techvalue: mongoose.Decimal128,
+        socultvalue: mongoose.Decimal128,
+        socities: [String], // array of strings
+        hobbies: [String],  // array of strings
+        favouritesubject: String, //out of PCM
+        programmingexperiancevalue: mongoose.Decimal128,
+        projectsinterestvalue: mongoose.Decimal128,
+        projectsinterestorder: [String],
+        futureorientationorder: [String], //order of these            research	finance    	cp/algo	   software/opensoft
+        depcinterest: Boolean,
+        researchgroupinterest: Boolean,
+        introextrovert: String,
+        moneyorpeace: String,
+        competitiveexamsorder: [String] // ICPC, GRE, CAT, NDA
+
     });
     userSchema.plugin(passportLocalMongoose);
 
@@ -94,8 +122,11 @@
 
     });
     app.get("/UserHome",function(req,res){
-        console.log("in UserHome get route");
+        // console.log("in UserHome get route");
         // console.log(req);  req.user is the object
+        // User.findById(req.user._id , function(err,found){
+        //     console.log(found);
+        // });
 
         if(req.isAuthenticated()){
             res.locals.username = req.user.username ;
@@ -112,8 +143,9 @@
                 res.redirect("/register");
             } else{
                 console.log(user._id);
-                // User.updateOne( {_id:user._id}, { $set : {email: req.email} } );
-                // console.log(User.find());
+                User.updateOne( {_id:user._id},  {email: req.body.email, fname:req.body.name}  , function(err){
+                    if(err) console.log(err);
+                } );
 
                 passport.authenticate("local")(req,res,function(){
                     res.redirect("/UserHome");

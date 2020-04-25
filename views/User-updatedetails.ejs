@@ -1,13 +1,294 @@
-<%- include('partials/user-header') -%>
+    <%- include('partials/user-header') -%>
 
-<%#  as this is a ejs file
-        user object is accessible here  %>
+    <%#  as this is a ejs file
+            user object is accessible here  %>
 
     <div class="jumbotron">
         <h1> Update Details </h1>
     </div>
 
+    <div class="container">
+        <div class="box">
+            <h2>User Details Form</h2>
+            <p class="lint">
+                This form contains user's personal details which is used to connect two like minded people <br>
+                Each field will have it's own weightage in calculating % match
+            </p>
+        </div>
+    </div>
+    <!-- make this post route ***-->
+    <div class="formclass">
+
+        <form class="" action="/updatedetails" method="post">
+            <h5 style="margin-top: 0px; margin-bottom: 20px;">Basic profile details:</h5>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>FirstName</label>
+                    <input type="text" class="form-control" placeholder="FirstName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>LastName</label>
+                    <input type="text" class="form-control" placeholder="LastName">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>UserName</label>
+                <input type="text" class="form-control" name="username" value="">
+            </div>
+            <div class="form-group">
+                <label>Email-ID</label>
+                <input type="text" class="form-control" name="email" value="">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Age</label>
+                    <input type="number" class="form-control" placeholder="age">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Gender</label>
+                    <select class="form-control" name="gender">
+                        <option selected>Choose...</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+            </div>
+            <hr class="ruler">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label>CGPA</label>
+                    <input type="number" class="form-control" name="cgpa" value="" step="0.01" min="0" max="10">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>JEE Rank</label>
+                    <input type="number" class="form-control" name="jeerank" value="">
+                </div>
+                <div class="form-group col-md-8">
+                    <label>Department</label>
+                    <select class="form-control" name="department">
+                        <option selected>Choose...</option>
+                        <option>CSE</option>
+                        <option>ECE</option>
+                        <option>EE</option>
+                        <option>MNC</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Home Town</label>
+                    <input type="text" name="hometown" class="form-control" value="">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Coaching</label>
+                    <select class="form-control" name="">
+                        <option selected>Choose...</option>
+                        <option>Allen</option>
+                        <option>FIITJEE</option>
+                        <option>Resonance</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label>Are you from Kota Factory ?</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="1kota" name="fromkota" value="Yes" required>
+                    <label class="custom-control-label" for="1kota">Yes</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="0kota" name="fromkota" value="No" required>
+                    <label class="custom-control-label" for="0kota">No</label>
+                </div>
+            </div>
+            <hr class="ruler">
+
+            <div class="form-group">
+                <label>Your EAA</label>
+                <select class="form-control" name="eaa">
+                    <option selected>Choose...</option>
+                    <option>NSS</option>
+                    <option>NCC</option>
+                    <option>NSO</option>
+                </select>
+            </div>
+
+
+            <h5 style="margin-top: 50px; margin-bottom: 20px;">Choose how much you like:</h5>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label> sports : </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="range" class="form-contrl" min="0" max="100" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label> Technology : </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="range" class="form-contrl" min="0" max="100" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label> Social and Cultural Activities : </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="range" class="form-contrl" min="0" max="100" />
+                </div>
+            </div>
+
+            <hr class="ruler">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label>Choose your personality:</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="a" name="introextrovert" value="Introvert" required>
+                    <label class="custom-control-label" for="a">Introvert</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="b" name="introextrovert" value="Extrovert" required>
+                    <label class="custom-control-label" for="b">Extrovert</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="c" name="introextrovert" value="Normal" required>
+                    <label class="custom-control-label" for="c">Normal</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label>Interesed in DepC ?</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="1depc" name="depcinterest" value="Yes" required>
+                    <label class="custom-control-label" for="1depc">Yes</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="0depc" name="depcinterest" value="No" required>
+                    <label class="custom-control-label" for="0depc">No</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label>Interesed to join a research group ?</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="1rg" name="researchgroupinterest" value="Yes" required>
+                    <label class="custom-control-label" for="1rg">Yes</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="0rg" name="researchgroupinterest" value="No" required>
+                    <label class="custom-control-label" for="0rg">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Socities you are in:</label>
+                <select class="form-control" name="hobbies">
+                    <option selected>Choose...</option>
+                    <option>TDS</option>
+                    <option>TFPS</option>
+                    <option>TLS</option>
+                    <option>Click-KGP</option>
+                    <option>TTG</option>
+                    <option>None of these</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Your Hobbies</label>
+                <select class="form-control" name="hobbies">
+                    <option selected>Choose...</option>
+                    <option>Singing</option>
+                    <option>Stamp collecting</option>
+                    <option>Dancing</option>
+                    <option>Video Games</option>
+                    <option>Sports</option>
+                    <option>None of these</option>
+
+                </select>
+            </div>
+
+            <hr class="ruler" style="margin-top: 40px; margin-bottom: 40px;">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label> Your interest in doing Projects : </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="range" class="form-contrl" name="projectsinterestvalue" min="0" max="100" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label> Rate yourself in Coding Skills : </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="range" class="form-contrl" name="programmingexperiancevalue" min="0" max="100" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Choose your future plan:</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="foresearch" name="futureorientationorder" value="research" required>
+                    <label class="custom-control-label" for="foresearch">Research</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="fofinance" name="futureorientationorder" value="finance" required>
+                    <label class="custom-control-label" for="fofinance">Finance</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="foopensoft" name="futureorientationorder" value="opensoft" required>
+                    <label class="custom-control-label" for="foopensoft">Opensoft</label>
+                </div>
+                <div class="custom-control custom-radio form-group col-md-2">
+                    <input class="custom-control-input" type="radio" id="focp" name="futureorientationorder" value="CP/Algo-DS" required>
+                    <label class="custom-control-label" for="focp">CP/Algo-DS</label>
+                </div>
+            </div>
+
+            <h5 style="margin-top: 50px; margin-bottom: 20px;">Are you prepairing for such exams:</h5>
+            <div class="custom-control custom-checkbox exam">
+                <input type="checkbox" class="custom-control-input" id="icpc">
+                <label class="custom-control-label" for="icpc">ICPC</label>
+            </div>
+            <div class="custom-control custom-checkbox exam">
+                <input type="checkbox" class="custom-control-input" id="gre">
+                <label class="custom-control-label" for="gre">GRE</label>
+            </div>
+            <div class="custom-control custom-checkbox exam">
+                <input type="checkbox" class="custom-control-input" id="cat">
+                <label class="custom-control-label" for="cat">CAT</label>
+            </div>
+            <div class="custom-control custom-checkbox exam">
+                <input type="checkbox" class="custom-control-input" id="upsc">
+                <label class="custom-control-label" for="upsc">UPSC</label>
+            </div>
+            <div class="custom-control custom-checkbox exam">
+                <input type="checkbox" class="custom-control-input" id="nda">
+                <label class="custom-control-label" for="nda">NDA</label>
+            </div>
+
+            <button type="submit" class=" form-control btn btn-lg btn-success finalbutton" name="button">Submit</button>
+        </form>
+
+    </div>
 
 
 
-<%- include('partials/user-footer') -%>
+    <%- include('partials/user-footer') -%>
