@@ -4,7 +4,7 @@
             user object is accessible here  %>
 
     <div class="jumbotron">
-        <h1> Update Details </h1>
+        <h1> Update Details <%= user.username%> </h1>
     </div>
 
     <div class="container">
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    
+
     <!-- make this post route ***-->
     <div class="formclass">
 
@@ -26,26 +26,29 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>FirstName</label>
-                    <input type="text" class="form-control" placeholder="FirstName">
+                    <% var fnamefiller = ""+user.fname; %>
+                    <input type="text" class="form-control" name="fname" disabled placeholder = <%= fnamefiller %>  >
                 </div>
                 <div class="form-group col-md-6">
                     <label>LastName</label>
-                    <input type="text" class="form-control" placeholder="LastName">
+                    <input type="text" class="form-control" name="lname" placeholder="LastName">
                 </div>
             </div>
 
             <div class="form-group">
                 <label>UserName</label>
-                <input type="text" class="form-control" name="username" value="">
+                <% var usernamefiller = ""+user.username %>
+                <input type="text" class="form-control" name="username" value=<%=usernamefiller%> disabled>
             </div>
             <div class="form-group">
                 <label>Email-ID</label>
-                <input type="text" class="form-control" name="email" value="">
+                <% var emailfiller = ""+user.email %>
+                <input type="text" class="form-control" name="email" value=<%=emailfiller%> disabled>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Age</label>
-                    <input type="number" class="form-control" placeholder="age">
+                    <input type="number" class="form-control" name="age" placeholder="age">
                 </div>
                 <div class="form-group col-md-6">
                     <label>Gender</label>
@@ -75,6 +78,7 @@
                         <option>ECE</option>
                         <option>EE</option>
                         <option>MNC</option>
+                        <option>None</option>
                     </select>
                 </div>
             </div>
@@ -85,11 +89,12 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>Coaching</label>
-                    <select class="form-control" name="">
+                    <select class="form-control" name="coaching">
                         <option selected>Choose...</option>
                         <option>Allen</option>
                         <option>FIITJEE</option>
                         <option>Resonance</option>
+                        <option>None</option>
                     </select>
                 </div>
             </div>
@@ -126,7 +131,7 @@
                     <label> sports : </label>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="range" class="form-contrl" min="0" max="100" />
+                    <input type="range" class="form-contrl" name="sportsvalue" min="0" max="100" />
                 </div>
             </div>
 
@@ -135,7 +140,7 @@
                     <label> Technology : </label>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="range" class="form-contrl" min="0" max="100" />
+                    <input type="range" class="form-contrl" name="techvalue" min="0" max="100" />
                 </div>
             </div>
 
@@ -144,7 +149,7 @@
                     <label> Social and Cultural Activities : </label>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="range" class="form-contrl" min="0" max="100" />
+                    <input type="range" class="form-contrl" name="socultvalue" min="0" max="100" />
                 </div>
             </div>
 
@@ -197,14 +202,14 @@
 
             <div class="form-group">
                 <label>Socities you are in:</label>
-                <select class="form-control" name="hobbies">
+                <select class="form-control" name="socities">
                     <option selected>Choose...</option>
                     <option>TDS</option>
                     <option>TFPS</option>
                     <option>TLS</option>
                     <option>Click-KGP</option>
                     <option>TTG</option>
-                    <option>None of these</option>
+                    <option>None</option>
 
                 </select>
             </div>
@@ -218,7 +223,7 @@
                     <option>Dancing</option>
                     <option>Video Games</option>
                     <option>Sports</option>
-                    <option>None of these</option>
+                    <option>None</option>
 
                 </select>
             </div>
@@ -266,26 +271,27 @@
 
             <h5 style="margin-top: 50px; margin-bottom: 20px;">Are you prepairing for such exams:</h5>
             <div class="custom-control custom-checkbox exam">
-                <input type="checkbox" class="custom-control-input" id="icpc">
+                <input type="checkbox" class="custom-control-input" name="competitiveexamsorder" id="icpc" value="icpc">
                 <label class="custom-control-label" for="icpc">ICPC</label>
             </div>
             <div class="custom-control custom-checkbox exam">
-                <input type="checkbox" class="custom-control-input" id="gre">
+                <input type="checkbox" class="custom-control-input" name="competitiveexamsorder" id="gre" value="gre">
                 <label class="custom-control-label" for="gre">GRE</label>
             </div>
             <div class="custom-control custom-checkbox exam">
-                <input type="checkbox" class="custom-control-input" id="cat">
+                <input type="checkbox" class="custom-control-input" name="competitiveexamsorder" id="cat" value="cat">
                 <label class="custom-control-label" for="cat">CAT</label>
             </div>
             <div class="custom-control custom-checkbox exam">
-                <input type="checkbox" class="custom-control-input" id="upsc">
+                <input type="checkbox" class="custom-control-input" name="competitiveexamsorder" id="upsc" value="upsc">
                 <label class="custom-control-label" for="upsc">UPSC</label>
             </div>
             <div class="custom-control custom-checkbox exam">
-                <input type="checkbox" class="custom-control-input" id="nda">
+                <input type="checkbox" class="custom-control-input" id="nda" name="competitiveexamsorder" value="nda">
                 <label class="custom-control-label" for="nda">NDA</label>
             </div>
 
+            <hr class="ruler">
             <button type="submit" class=" form-control btn btn-lg btn-success finalbutton" name="button">Submit</button>
         </form>
 

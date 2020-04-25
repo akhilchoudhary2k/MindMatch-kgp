@@ -38,24 +38,24 @@
         age: Number,
         gender: String,
         department: String,
-        cgpa: mongoose.Decimal128,
+        cgpa: Number,
         hometown: String,
         coaching: String,
         jeerank: Number,
-        fromkota: Boolean,
+        fromkota: String,   // instead of boolean use Yes, No
         eaa: String,
-        sportsvalue: mongoose.Decimal128,
-        techvalue: mongoose.Decimal128,
-        socultvalue: mongoose.Decimal128,
+        sportsvalue: Number,
+        techvalue: Number,
+        socultvalue: Number,
         socities: [String], // array of strings
         hobbies: [String],  // array of strings
         favouritesubject: String, //out of PCM
-        programmingexperiancevalue: mongoose.Decimal128,
-        projectsinterestvalue: mongoose.Decimal128,
+        programmingexperiancevalue: Number,
+        projectsinterestvalue: Number,
         projectsinterestorder: [String],
         futureorientationorder: [String], //order of these            research	finance    	cp/algo	   software/opensoft
-        depcinterest: Boolean,
-        researchgroupinterest: Boolean,
+        depcinterest: String,
+        researchgroupinterest: String,
         introextrovert: String,
         moneyorpeace: String,
         competitiveexamsorder: [String] // ICPC, GRE, CAT, NDA
@@ -142,7 +142,7 @@
                 console.log(err);
                 res.redirect("/register");
             } else{
-                console.log(user._id);
+                // console.log(req.body);
                 User.updateOne( {_id:user._id},  {email: req.body.email, fname:req.body.name}  , function(err){
                     if(err) console.log(err);
                 } );
@@ -167,6 +167,45 @@
 
     // routes when the user is logged in
 
+    app.post("/updatedetails", function(req,res){
+        if(req.isAuthenticated()){
+            console.log("who submitted = " + req.user.username +" "+req.user._id );
+            // console.log(req.body);
+
+            User.updateOne({_id:req.user._id},{
+                lname: req.body.lname,
+                age: req.body.age,
+                gender: req.body.gender,
+                cgpa: req.body.cgpa,
+                jeerank: req.body.jeerank,
+                department: req.body.department,
+                hometown: req.body.hometown,
+                coaching: req.body.coaching,
+                fromkota: req.body.fromkota,
+                eaa: req.body.eaa,
+                sportsvalue: req.body.sportsvalue,
+                techvalue: req.body.techvalue,
+                socultvalue: req.body.socultvalue,
+                depcinterest: req.body.depcinterest,
+                researchgroupinterest: req.body.researchgroupinterest,
+                socities: req.body.socities,
+                hobbies: req.body.hobbies,
+                projectsinterestvalue: req.body.projectsinterestvalue,
+                programmingexperiancevalue: req.body.programmingexperiancevalue,
+                futureorientationorder: req.body.futureorientationorder
+            },function(err){
+                if(err) console.log(err);
+                else console.log("data updated successfully");
+            });
+
+            res.locals.username = req.user.username ;
+            // res.render('User-getsuggestions',{user : req.user});
+            res.send("submitted");
+        } else{
+            res.redirect('/login');
+        }
+    });
+
     app.get("/getsuggestions", function(req,res){
         if(req.isAuthenticated()){
             res.locals.username = req.user.username ;
@@ -178,6 +217,7 @@
 
     app.get("/updatedetails", function(req,res){
         if(req.isAuthenticated()){
+            console.log("from updatedetails route : " + req.user.username );
             res.locals.username = req.user.username ;
             res.render('User-updatedetails',{user : req.user});
         } else{
