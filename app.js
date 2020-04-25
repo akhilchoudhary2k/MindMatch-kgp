@@ -68,12 +68,34 @@
         res.render('contact',{});
     });
 
+    app.get("/logout", function(req,res){
+        req.logout();
+        res.redirect("/");
+    });
+
     app.post("/login",function(req,res){
+        const user = new User({
+            username: req.body.username,
+            password: req.body.password
+        });
+
+        req.login(user, function(err){
+            if(err){
+                console.log(err);
+            } else{
+                passport.authenticate("local")(req,res,function(){
+                    res.redirect("/UserHome");
+                });
+            }
+        });
 
     });
     app.get("/UserHome",function(req,res){
+        console.log("in UserHome get route");
+        // console.log(req);  req.user is the object
+
         if(req.isAuthenticated()){
-            res.render('UserHome',{});
+            res.render('UserHome',{user : req.user});
         } else{
             res.redirect('/login');
         }
@@ -85,6 +107,10 @@
                 console.log(err);
                 res.redirect("/register");
             } else{
+                console.log(user._id);
+                // User.updateOne( {_id:user._id}, { $set : {email: req.email} } );
+                // console.log(User.find());
+
                 passport.authenticate("local")(req,res,function(){
                     res.redirect("/UserHome");
                 });
