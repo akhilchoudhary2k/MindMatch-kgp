@@ -15,10 +15,10 @@
 
     <!-- navbar for logged in user -->
     <nav class="above navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/UserHome"> MindMatch </a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active rightSpace"> <a class="nav-link" href="/UserHome">My Dashboard</a> </li>
-            <li class="nav-item active rightSpace"> <a class="nav-link" href="/help">Help</a> </li>
+        <a class="navbar-brand hovercolor larger" href="/UserHome"> MindMatch </a>
+        <ul class="navbar-nav mr-auto ">
+            <li class="nav-item active rightSpace "> <a class="nav-link hovercolor larger" href="/UserHome">My Dashboard</a> </li>
+            <li class="nav-item active rightSpace "> <a class="nav-link hovercolor larger" href="/help">Help</a> </li>
         </ul>
         <ul class="navbar-nav ml-auto">
 
@@ -26,7 +26,7 @@
                 <div class="dropdown">
                     <!-- dropbtn class was added in the button below -->
 
-                    <button class="btn btn-outline-warning rightSpace"> <%= username %> </button>
+                    <button class="btn btn-outline-success rightSpace larger"> UserName: <%= username %> </button>
                     <div class="dropdown-content">
                         <a href="#">Edit Profile</a>
                         <a href="#">Change password</a>
@@ -35,7 +35,7 @@
                 </div>
             </li>
 
-            <li class="nav-item active"> <a href="/logout" class="btn btn-danger">Logout</a> </li>
+            <li class="nav-item active"> <a href="/logout" class="btn btn-danger larger">Logout</a> </li>
         </ul>
     </nav>
 

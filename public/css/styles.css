@@ -3,6 +3,19 @@ footer p {
     margin-top: 10%;
     text-align: center;
 }
+.navbar {
+  /* overflow: hidden; */
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+.larger{
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}
+.hovercolor:hover {
+  color: yellow !important;
+}
 .bg-light{
     background-color: #f8f9fa!important
 }
@@ -28,7 +41,8 @@ footer p {
     margin-bottom: 5px;
 }
 .lint{
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 23px;
 }
 .ruler{
     border: 0;
