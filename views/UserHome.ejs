@@ -1,9 +1,22 @@
     <%- include('partials/user-header') -%>
 
-    <br>
+       <%#  as this is a ejs file
+            user object is accessible here  %>
+
+    <div class="jumbotron">
+        <h1> DashBoard </h1>
+    </div>
+
+
+    <div class="box">
+        <h3>Hi  <%= user.username %> </h3>
+        <h5>Welcome to your HOMEPAGE</h5>
+    </div>
+
+    <%# <br>
     welcome to your home
     <br>
-    <%= user.username %>
+     %>
 
 
     <%- include('partials/user-footer') -%>

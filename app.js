@@ -98,6 +98,7 @@
         // console.log(req);  req.user is the object
 
         if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
             res.render('UserHome',{user : req.user});
         } else{
             res.redirect('/login');
@@ -123,6 +124,74 @@
     app.post("/adminlogin",function(req,res){
 
     });
+
+
+
+
+
+
+
+
+
+    // routes when the user is logged in
+
+    app.get("/getsuggestions", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.render('User-getsuggestions',{user : req.user});
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+    app.get("/updatedetails", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.render('User-updatedetails',{user : req.user});
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+    app.get("/messages", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.render('User-messages',{user : req.user});
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+    app.get("/search", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.render('User-search',{user : req.user});
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+    app.get("/privacysettings", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.render('User-privacysettings',{user : req.user});
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //start listning (just to turn on the server)
