@@ -31,8 +31,12 @@
                 <% var fnamefiller = "" + user.fname %>
                 <input type="text" class="form-control" name="fname" disabled placeholder= <%=fnamefiller%>  >
             </div>
-            <label class="switch"  >
-                <input type="checkbox" class="checked" name="show-fname" >
+            <label class="switch" >
+                <% var b = user.todisplay.includes( "fname" ); %>
+                <% console.log(b); %>
+                <input <%= b ? "checked" : "" %> type="checkbox" class="checked" name="fname" >
+                <!-- else  <input type="checkbox" class="checked" name="fname" > -->
+
                 <span class="slider round"></span>
             </label>
         </div>
@@ -46,7 +50,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=lnamefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-lname" >
+                <% var b = user.todisplay.includes( "lname" ); %>
+                <input <%= b ? "checked" : "" %> type="checkbox" class="" name="lname" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -60,7 +65,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=usernamefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-username" >
+                <% var b = user.todisplay.includes( "username" ); %>
+                <input <%= b ? "checked" : "" %>  type="checkbox" class="" name="username" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -74,7 +80,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=emailfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-email" >
+                <% var b = user.todisplay.includes( "email" ); %>
+                <input <%= b ? "checked" : "" %>  type="checkbox" class="" name="email" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -88,7 +95,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=agefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-age" >
+                <% var b = user.todisplay.includes( "age" ); %>
+                <input <%= b ? "checked" : "" %>  type="checkbox" class="" name="age" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -102,7 +110,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=genderfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-gender" >
+                <% var b = user.todisplay.includes( "gender" ); %>
+                <input <%= b ? "checked" : "" %>  type="checkbox" class="" name="gender" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -113,10 +122,11 @@
             </div>
             <div class="form-group col-md-4">
                 <% var cgpafiller = "" + user.cgpa %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=cgpafiller%>  >
+                <input type="text" class="form-control" name="" disabled placeholder= <%=cgpafiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-cgpa" >
+                <% var b = user.todisplay.includes( "cgpa" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="cgpa" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -130,7 +140,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=departmentfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-department" >
+                <% var b = user.todisplay.includes( "department" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="department" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -144,7 +155,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=hometownfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-hometown" >
+                <% var b = user.todisplay.includes( "hometown" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="hometown" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -158,7 +170,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=coachingfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-coaching" >
+                <% var b = user.todisplay.includes( "coaching" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="coaching" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -172,7 +185,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=fromkotafiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-fromkota" >
+                <% var b = user.todisplay.includes( "fromkota" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="fromkota" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -186,7 +200,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=eaafiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-eaa" >
+                <% var b = user.todisplay.includes( "eaa" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="eaa" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -200,7 +215,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=sportsvaluefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-sportsvalue" >
+                <% var b = user.todisplay.includes( "sportsvalue" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="sportsvalue" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -214,7 +230,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=techvaluefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-techvalue" >
+                <% var b = user.todisplay.includes( "techvalue" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="techvalue" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -228,7 +245,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=socultvaluefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-socultvalue" >
+                <% var b = user.todisplay.includes( "socultvalue" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="socultvalue" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -242,7 +260,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=depcinterestfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-depcinterest" >
+                <% var b = user.todisplay.includes( "depcinterest" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="depcinterest" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -256,7 +275,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=introextrovertfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-introextrovert" >
+                <% var b = user.todisplay.includes( "introextrovert" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="introextrovert" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -270,7 +290,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=researchgroupinterestfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-researchgroupinterest" >
+                <% var b = user.todisplay.includes( "researchgroupinterest" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="researchgroupinterest" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -284,7 +305,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=hobbiesfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-hobbies" >
+                <% var b = user.todisplay.includes( "hobbies" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="hobbies" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -298,7 +320,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=socitiesfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-socities" >
+                <% var b = user.todisplay.includes( "socities" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="socities" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -312,7 +335,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=projectsinterestvaluefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-projectsinterestvalue" >
+                <% var b = user.todisplay.includes( "projectsinterestvalue" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="projectsinterestvalue" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -326,7 +350,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=programmingexperiancevaluefiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-programmingexperiancevalue" >
+                <% var b = user.todisplay.includes( "programmingexperiancevalue" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="programmingexperiancevalue" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -340,7 +365,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=futureorientationorderfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-futureorientationorder" >
+                <% var b = user.todisplay.includes( "futureorientationorder" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="futureorientationorder" >
                 <span class="slider round"></span>
             </label>
         </div>
@@ -354,7 +380,8 @@
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=competitiveexamsorderfiller%>  >
             </div>
             <label class="switch"  >
-                <input type="checkbox" class="" name="show-competitiveexamsorder" >
+                <% var b = user.todisplay.includes( "competitiveexamsorder" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="competitiveexamsorder" >
                 <span class="slider round"></span>
             </label>
         </div>

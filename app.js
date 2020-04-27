@@ -282,7 +282,7 @@
 
             var arr = Object.keys(req.body);    // will convert the recieved json object to an array of strings
             console.log( typeof(arr) );
-            console.log( arr );
+            // console.log( arr );
 
             var arr2 = ['fname', 'username', 'email', 'gender', 'age' ]; // these are the must display fields
             arr2.forEach(function(element){
