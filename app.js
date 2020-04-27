@@ -80,10 +80,12 @@
 
 
     app.get("/login", function(req,res){
-        res.render('login', {});
+        var message ="";
+        res.render('login', {message : message});
     });
     app.get("/register", function(req,res){
-        res.render('register',{});
+        var message ="";
+        res.render('register',{message : message});
     });
     app.get("/adminlogin", function(req,res){
         res.render('admin-login',{});
@@ -105,22 +107,30 @@
         res.redirect("/");
     });
 
+
     app.post("/login",function(req,res){
         const user = new User({
             username: req.body.username,
             password: req.body.password
         });
+        User.findOne({username: req.body.username}, function(err,found){
+            if(!found){
+                var message = "No such username exists";
+                res.render('login', {message: message});
+            }else{
 
-        req.login(user, function(err){
-            if(err){
-                console.log(err);
-            } else{
-                passport.authenticate("local")(req,res,function(){
-                    res.redirect("/UserHome");
+                req.login(user, function(err){
+                    if(err){
+                        console.log(err);
+                    } else{
+                        passport.authenticate("local")(req,res,function(){
+                            res.redirect("/UserHome" );
+                        });
+                    }
                 });
+
             }
         });
-
     });
     app.get("/UserHome",function(req,res){
         // console.log("in UserHome get route");
@@ -138,22 +148,30 @@
     });
     app.post("/register",function(req,res){
         // console.log(req.body);
-        User.register( {username:req.body.username} , req.body.password , function(err,user){
-            if(err){
-                console.log(err);
-                res.redirect("/register");
-            } else{
-                // console.log(req.body);
-                User.updateOne( {_id:user._id},  {email: req.body.email, fname:req.body.name}  , function(err){
-                    if(err) console.log(err);
-                } );
 
-                passport.authenticate("local")(req,res,function(){
-                    res.redirect("/UserHome");
-                });
-            }
-        });
+        if(req.body.password != req.body.password2 ){
+            var message="Passwords do not match";
+            res.render('register', {message: message});
+        }
+        else{
+            User.register( {username:req.body.username} , req.body.password , function(err,user){
+                if(err){
+                    console.log(err.message);
+                    var message = err.message;
+                    res.render("register", {message: message});
+                } else{
+                    // console.log(req.body);
+                    User.updateOne( {_id:user._id},  {email: req.body.email, fname:req.body.name}  , function(err){
+                        if(err) console.log(err);
+                    } );
+                    passport.authenticate("local")(req,res,function(){
+                        res.redirect("/UserHome");
+                    });
+                }
+            });
+        }
     });
+
     app.post("/adminlogin",function(req,res){
 
     });

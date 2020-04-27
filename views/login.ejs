@@ -2,15 +2,19 @@
 
 <div class="box">
     <h1 class="heading">Login</h1>
+
+    <% var b = (message.length === 0 ) %>
+    <p <%= b ? "hidden" : ""  %> style="color: red" > Error  :  <%= message %> </p>
+
     <form class="" action="/login" method="post" >
 
         <div class="form-group">
             <label for="">Username (not e-mail ID)</label>
-            <input type="text" class="form-control" name="username" value="" autofocus placeholder="Enter your username ">
+            <input type="text" class="form-control" name="username" value="" autofocus required placeholder="Enter your username ">
         </div>
         <div class="form-group">
             <label for="">Password</label>
-            <input type="password" class="form-control" name="password" value="" placeholder="Enter your password">
+            <input type="password" class="form-control" name="password" required value="" placeholder="Enter your password">
         </div>
         <div class="form-group">
             <button type="submit" class=" form-control btn btn-success btn-lg space" name="button">Log-In</button>

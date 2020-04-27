@@ -18,8 +18,8 @@
     <nav class="above navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand hovercolor larger" href="/UserHome"> MindMatch </a>
         <ul class="navbar-nav mr-auto ">
-            <li class="nav-item active rightSpace "> <a class="nav-link hovercolor larger" href="/UserHome">My Dashboard</a> </li>
-            <li class="nav-item active rightSpace "> <a class="nav-link hovercolor larger" href="/help">Help</a> </li>
+            <li class="nav-item active rightSpace "> <a class="nav-link hovercolor larger" href="/UserHome"> <i class="fa-6x fa fas fa-home"></i> My Dashboard</a> </li>
+            <li class="nav-item active rightSpace "> <a class="nav-link hovercolor larger" href="/help"> <i class="fa fas fa-question-circle"></i> Help</a> </li>
         </ul>
         <ul class="navbar-nav ml-auto">
 
@@ -27,7 +27,7 @@
                 <div class="dropdown">
                     <!-- dropbtn class was added in the button below -->
 
-                    <button class="btn btn-outline-success rightSpace larger"> UserName: <%= username %> <i class="fas fa fa-chevron-circle-down"></i> </button>
+                    <button class="btn btn-outline-success rightSpace larger"> <i class="fa fas fa-user icon"></i> <%= username %> <i class="fas fa fa-chevron-circle-down"></i> </button>
                     <div class="dropdown-content">
                         <% var myprofilelink = "/profile/" + username; %>
                         <!-- <% console.log(myprofilelink) %> -->
@@ -45,11 +45,11 @@
 
     <!-- Side navigation -->
     <div class="makeSpaceAbove sidenav ">
-        <a href="/getsuggestions">Get Suggestions</a>
-        <a href="/updatedetails">Update details</a>
-        <a href="/messages">Chat/Messages</a>
-        <a href="/search">Search</a>
-        <a href="/privacysettings">Privacy Settings</a>
+        <a href="/getsuggestions"> <i class="fa fas fa-users icon"></i> Get Suggestions</a>
+        <a href="/updatedetails"> <i class="fa far fa-edit icon"></i> Update details</a>
+        <a href="/messages"> <i class="fa fas fa-envelope icon"></i> Chat/Messages</a>
+        <a href="/search"> <i class="fa fas fa-search icon"></i> Search</a>
+        <a href="/privacysettings"> <i class="fa fas fa-cog icon"></i> Privacy Settings</a>
     </div>
 
     <!-- Page content -->

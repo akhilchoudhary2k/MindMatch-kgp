@@ -5,7 +5,9 @@ footer p {
     margin-top: 10%;
     text-align: center;
 }
-
+.icon{
+    margin-right: 3px;
+}
 .navbar {
     /* overflow: hidden; */
     position: fixed;
@@ -113,8 +115,8 @@ footer p {
     top: 0;
     /* Stay at the top */
     left: 0;
-    background-color: #111;
-    /* Black */
+    background-color: #23272b;
+    /* #111 */
     overflow-x: hidden;
     /* Disable horizontal scroll */
     padding-top: 20px;

@@ -1,9 +1,13 @@
 <%- include('partials/index-header') -%>
 
 
-
     <div class="box">
         <h1 class="heading">Register yourself</h1>
+
+        <% var b = (message.length === 0 ) %>
+        <% console.log(b); %>
+        <p <%= b ? "hidden" : ""  %> style="color: red" > Error  :  <%= message %> </p>
+
         <form class="" action="/register" method="post">
             <div class="form-group">
                 <label for="">First Name</label>
@@ -15,15 +19,15 @@
             </div>
             <div class="form-group">
                 <label for="">Email-address</label>
-                <input type="text" class="form-control" name="email" value="" placeholder="Enter your email address">
+                <input type="email" class="form-control" name="email" value="" placeholder="Enter your email address" required>
             </div>
             <div class="form-group">
                 <label for="">Password</label>
-                <input type="password" class="form-control" name="password" value="" placeholder="Enter your password">
+                <input type="password" class="form-control" name="password" value="" placeholder="Enter your password" required>
             </div>
             <div class="form-group">
                 <label for="">Confirm Password</label>
-                <input type="password" class="form-control" name="password2" value="" placeholder="Enter your password again">
+                <input type="password" class="form-control" name="password2" value="" placeholder="Enter your password again" required>
             </div>
             <div class="form-group">
                 <button type="submit" class=" form-control btn btn-success btn-lg space" name="button">Register</button>
