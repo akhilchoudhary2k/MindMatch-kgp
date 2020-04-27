@@ -4,7 +4,7 @@
             user object is accessible here  %>
 
     <div class="jumbotron">
-        <h1> Update Details <%= user.username%> </h1>
+        <h1> Update Details  </h1>
     </div>
 
     <div class="container">
@@ -62,14 +62,14 @@
             </div>
             <hr class="ruler">
             <div class="form-row">
-                <div class="form-group col-md-2">
-                    <label>CGPA</label>
+                <div class="form-group col-md-4">
+                    <label>CGPA in college</label>
                     <input type="number" class="form-control" name="cgpa" value="" step="0.01" min="0" max="10">
                 </div>
-                <div class="form-group col-md-2">
+                <!-- <div class="form-group col-md-2">
                     <label>JEE Rank</label>
                     <input type="number" class="form-control" name="jeerank" value="">
-                </div>
+                </div> -->
                 <div class="form-group col-md-8">
                     <label>Department</label>
                     <select class="form-control" name="department">
@@ -91,6 +91,7 @@
                     <label>Coaching</label>
                     <select class="form-control" name="coaching">
                         <option selected>Choose...</option>
+                        <option>Self-Study</option>
                         <option>Allen</option>
                         <option>FIITJEE</option>
                         <option>Resonance</option>

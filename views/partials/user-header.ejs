@@ -7,7 +7,8 @@
     <title> <%= username %> </title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
 
 </head>
 
@@ -26,16 +27,18 @@
                 <div class="dropdown">
                     <!-- dropbtn class was added in the button below -->
 
-                    <button class="btn btn-outline-success rightSpace larger"> UserName: <%= username %> </button>
+                    <button class="btn btn-outline-success rightSpace larger"> UserName: <%= username %> <i class="fas fa fa-chevron-circle-down"></i> </button>
                     <div class="dropdown-content">
-                        <a href="#">Edit Profile</a>
-                        <a href="#">Change password</a>
-                        <a href="#">Link 3</a>
+                        <% var myprofilelink = "/profile/" + username; %>
+                        <!-- <% console.log(myprofilelink) %> -->
+                        <a href= <%= myprofilelink %> > My Profile</a>
+                        <a href="/">Change password</a>
+                        <a href="/">Link 3</a>
                     </div>
                 </div>
             </li>
 
-            <li class="nav-item active"> <a href="/logout" class="btn btn-danger larger">Logout</a> </li>
+            <li class="nav-item active"> <a href="/logout" class="btn btn-danger larger">Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a> </li>
         </ul>
     </nav>
 

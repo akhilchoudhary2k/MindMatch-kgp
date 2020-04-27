@@ -42,7 +42,6 @@
         cgpa: Number,
         hometown: String,
         coaching: String,
-        jeerank: Number,
         fromkota: String,   // instead of boolean use Yes, No
         eaa: String,
         sportsvalue: Number,
@@ -168,6 +167,24 @@
 
     // routes when the user is logged in
 
+    app.get("/profile/:userName", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ; // just to put username in the navbar
+            // req.user -> who made this get request
+            // req.params.userName -> whose profile should be displayed
+
+            User.findOne( {username: req.params.userName}, function(err,foundUser){
+                if(err) console.log(err);
+                else{
+                    if(foundUser) res.render('User-profile',{user : foundUser});
+                    else res.send("No such user");
+                }
+            } );
+        } else{
+            res.redirect('/login');
+        }
+    });
+
     app.post("/updatedetails", function(req,res){
         if(req.isAuthenticated()){
             console.log("who submitted = " + req.user.username +" "+req.user._id );
@@ -178,7 +195,6 @@
                 age: req.body.age,
                 gender: req.body.gender,
                 cgpa: req.body.cgpa,
-                jeerank: req.body.jeerank,
                 department: req.body.department,
                 hometown: req.body.hometown,
                 coaching: req.body.coaching,
@@ -187,6 +203,7 @@
                 sportsvalue: req.body.sportsvalue,
                 techvalue: req.body.techvalue,
                 socultvalue: req.body.socultvalue,
+                introextrovert: req.body.introextrovert,
                 depcinterest: req.body.depcinterest,
                 researchgroupinterest: req.body.researchgroupinterest,
                 socities: req.body.socities,
@@ -251,6 +268,10 @@
         } else{
             res.redirect('/login');
         }
+    });
+
+    app.post("/privacysettings", function(req,res){
+        
     });
 
 
