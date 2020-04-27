@@ -220,8 +220,7 @@
             });
 
             res.locals.username = req.user.username ;
-            // res.render('User-getsuggestions',{user : req.user});
-            res.send("submitted");
+            res.render('success');
         } else{
             res.redirect('/login');
         }
@@ -290,7 +289,10 @@
             });
             User.updateOne( {_id : req.user._id}, {todisplay: arr}, function(err){
                 if(err) console.log(err);
-                else res.send("submitted");
+                else {
+                    res.locals.username = req.user.username ;
+                    res.render('success');
+                }
             } );
 
         } else{

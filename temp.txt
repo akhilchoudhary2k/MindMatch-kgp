@@ -1,3 +1,275 @@
-<!-- <title> <%= username %> </title> -->
 
-<!-- <button class="btn btn-outline-success rightSpace larger"> UserName: <%= username %> <i class="fas fa fa-chevron-circle-down"></i> </button> -->
+<!-- ['fname', 'username', 'email', 'gender', 'age' ] -->
+
+<div class="formclass">
+
+    <form class="form-horizontal" action="/privacysettings" method="post">
+        <p style="margin-top: 0px; margin-bottom: 40px;"> Don't forget to <u> save the changes </u> at the bottom of page</p>
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>FirstName</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var fnamefiller = "" + user.fname %>
+                <input type="text" class="form-control" name="fname" disabled placeholder= <%=fnamefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>LastName</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var lnamefiller = "" + user.lname %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=lnamefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>UserName</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var usernamefiller = "" + user.username %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=usernamefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Email Id</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var emailfiller = "" + user.email %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=emailfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Age</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var agefiller = "" + user.age %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=agefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Gender</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var genderfiller = "" + user.gender %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=genderfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>CGPA in college</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var cgpafiller = "" + user.cgpa %>
+                <input type="text" class="form-control" name="" disabled placeholder= <%=cgpafiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Department</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var departmentfiller = "" + user.department %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=departmentfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Home Town</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var hometownfiller = "" + user.hometown %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=hometownfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Coaching</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var coachingfiller = "" + user.coaching %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=coachingfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Kotaite</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var fromkotafiller = "" + user.fromkota %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=fromkotafiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>EAA</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var eaafiller = "" + user.eaa %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=eaafiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Sports Interest</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var sportsvaluefiller = "" + user.sportsvalue %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=sportsvaluefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Tech Interest</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var techvaluefiller = "" + user.techvalue %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=techvaluefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Socult Interest</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var socultvaluefiller = "" + user.socultvalue %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=socultvaluefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>DepC Interest</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var depcinterestfiller = "" + user.depcinterest %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=depcinterestfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Personality Type</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var introextrovertfiller = "" + user.introextrovert %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=introextrovertfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Research Group Interest</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var researchgroupinterestfiller = "" + user.researchgroupinterest %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=researchgroupinterestfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Hobies</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var hobbiesfiller = "" + user.hobbies %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=hobbiesfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Socities</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var socitiesfiller = "" + user.socities %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=socitiesfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Interest in Project</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var projectsinterestvaluefiller = "" + user.projectsinterestvalue %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=projectsinterestvaluefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Coding Skills</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var programmingexperiancevaluefiller = "" + user.programmingexperiancevalue %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=programmingexperiancevaluefiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Future Plan</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var futureorientationorderfiller = "" + user.futureorientationorder %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=futureorientationorderfiller%>  >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4">
+                <label>Exams I'am prepairing for:</label>
+            </div>
+            <div class="form-group col-md-4">
+                <% var competitiveexamsorderfiller = "" + user.competitiveexamsorder %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=competitiveexamsorderfiller%>  >
+            </div>
+
+        </div>
+
+    </form>
+
+
+</div>

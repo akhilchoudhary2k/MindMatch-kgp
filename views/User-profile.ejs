@@ -5,10 +5,257 @@
         user object is accessible here  %>
 
     <div class="jumbotron">
-        <h1> Profile of user : <i>  <%= user.username %> </i>   </h1>
+        <h1>  PROFILE  </h1>
     </div>
 
+    <div class="container">
+        <div class="box">
 
+            <h2> Profile of User : <i>  <%= user.username %> </i> </h2>
+            <p class="lint">
+                All the fields may not be visible <br> The ones hidden by the user are denoted by HIDDEN
+            </p>
+        </div>
+    </div>
+
+<!-- /*****************************************************************************************************/ -->
+
+
+
+
+<div class="profileclass">
+
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>FirstName</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var fnamefiller = "" + user.fname %>
+                <input type="text" class="form-control" name="fname" disabled placeholder= <%=fnamefiller%>  >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>UserName</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var usernamefiller = "" + user.username %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=usernamefiller%>  >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Email Id</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var emailfiller = "" + user.email %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=emailfiller%>  >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Age</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var agefiller = "" + user.age %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=agefiller%>  >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Gender</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var genderfiller = "" + user.gender %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=genderfiller%>  >
+            </div>
+        </div>
+<!-- ###################################################################################################### -->
+        <hr class="ruler" style="margin-top: 40px; margin-bottom: 40px;">
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>LastName</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var lnamefiller = user.todisplay.includes("lname") ? lnamefiller = "" + user.lname : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=lnamefiller%>  >
+            </div>
+            <div class="col-md-3">
+                <label>CGPA in college</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var cgpafiller = user.todisplay.includes("cgpa") ? cgpafiller = "" + user.cgpa : "HIDDEN"  %>
+                <input type="text" class="form-control" name="" disabled placeholder= <%=cgpafiller%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Department</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var departmentfiller = user.todisplay.includes("department") ? x = "" + user.department : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=departmentfiller%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Home Town</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var hometownfiller = user.todisplay.includes("hometown") ? hometownfiller = "" + user.hometown : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=hometownfiller%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Coaching</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var coachingfiller = user.todisplay.includes("coaching") ? coachingfiller = "" + user.coaching : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=coachingfiller%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Kotaite</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var fromkotafiller = user.todisplay.includes("fromkota") ? fromkotafiller = "" + user.fromkota : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=fromkotafiller%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>EAA</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("eaa") ? filler = "" + user.eaa : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Sports Interest</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("sportsvalue") ? filler = "" + user.sportsvalue : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Tech Interest</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("techvalue") ? filler = "" + user.techvalue : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Socult Interest</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("socultvalue") ? socultvalue = "" + user.socultvalue : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>DepC Interest</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("depcinterest") ? filler = "" + user.depcinterest : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Personality Type</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("introextrovert") ? filler = "" + user.introextrovert : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Research Group Interest</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("researchgroupinterest") ? filler = "" + user.researchgroupinterest : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Hobies</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("hobbies") ? filler = "" + user.hobbies : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Socities</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("socities") ? filler = "" + user.socities : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Interest in Project</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("projectsinterestvalue") ? filler = "" + user.projectsinterestvalue : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Coding Skills</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("programmingexperiancevalue") ? filler = "" + user.programmingexperiancevalue : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+            <div class="col-md-3">
+                <label>Future Plan</label>
+            </div>
+            <div class="form-group col-md-3">
+                <% var filler = user.todisplay.includes("futureorientationorder") ? filler = "" + user.futureorientationorder : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <label>Exams I'am prepairing for:</label>
+            </div>
+            <div class="form-group col-md-9">
+
+                <% var filler = user.todisplay.includes("competitiveexamsorder") ? filler = "" + user.competitiveexamsorder : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
+            </div>
+
+        </div>
+</div>
+
+
+<!-- /*****************************************************************************************************/ -->
 
 
 <%- include('partials/user-footer') -%>
