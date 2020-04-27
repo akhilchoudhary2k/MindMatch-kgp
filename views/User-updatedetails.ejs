@@ -48,15 +48,15 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Age</label>
-                    <input type="number" class="form-control" name="age" placeholder="age">
+                    <input type="number" class="form-control" name="age" placeholder="Age" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Gender</label>
-                    <select class="form-control" name="gender">
-                        <option selected>Choose...</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Others</option>
+                    <select class="form-control" name="gender" required>
+                        <option value="" hidden disabled selected >Choose...</option>
+                        <option value="Male" >Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
                     </select>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>CGPA in college</label>
-                    <input type="number" class="form-control" name="cgpa" value="" step="0.01" min="0" max="10">
+                    <input type="number" class="form-control" placeholder="0-10.00" name="cgpa" value="" step="0.01" min="0" max="10">
                 </div>
                 <!-- <div class="form-group col-md-2">
                     <label>JEE Rank</label>
@@ -72,30 +72,32 @@
                 </div> -->
                 <div class="form-group col-md-8">
                     <label>Department</label>
-                    <select class="form-control" name="department">
-                        <option selected>Choose...</option>
-                        <option>CSE</option>
-                        <option>ECE</option>
-                        <option>EE</option>
-                        <option>MNC</option>
-                        <option>None</option>
+                    <select class="form-control" name="department" required>
+                        <option value="" selected hidden disabled>Choose...</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EE">EE</option>
+                        <option value="MNC">MNC</option>
+                        <option value="CE">CE</option>
+                        <option value="HSS">HSS</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Home Town</label>
-                    <input type="text" name="hometown" class="form-control" value="">
+                    <input type="text" name="hometown" placeholder="Enter..." class="form-control" value="" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Coaching</label>
-                    <select class="form-control" name="coaching">
-                        <option selected>Choose...</option>
-                        <option>Self-Study</option>
-                        <option>Allen</option>
-                        <option>FIITJEE</option>
-                        <option>Resonance</option>
-                        <option>None</option>
+                    <select class="form-control" name="coaching" >
+                        <option value="" disabled hidden selected>Choose...</option>
+                        <option value="Self-Study">Self-Study</option>
+                        <option value="Allen">Allen</option>
+                        <option value="FIITJEE">FIITJEE</option>
+                        <option value="Resonance">Resonance</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
             </div>
@@ -117,11 +119,11 @@
 
             <div class="form-group">
                 <label>Your EAA</label>
-                <select class="form-control" name="eaa">
-                    <option selected>Choose...</option>
-                    <option>NSS</option>
-                    <option>NCC</option>
-                    <option>NSO</option>
+                <select class="form-control" name="eaa" required>
+                    <option value="" selected hidden diabled>Choose...</option>
+                    <option value="NSS">NSS</option>
+                    <option value="NCC">NCC</option>
+                    <option value="NSO">NSO</option>
                 </select>
             </div>
 
@@ -203,30 +205,32 @@
 
             <div class="form-group">
                 <label>Socities you are in:</label>
-                <select class="form-control" name="socities">
-                    <option selected>Choose...</option>
+                <select class="form-control" name="socities"  required>
+                    <option value="" hidden disabled selected>Choose...</option>
                     <option>TDS</option>
                     <option>TFPS</option>
                     <option>TLS</option>
                     <option>Click-KGP</option>
                     <option>TTG</option>
-                    <option>None</option>
-
+                    <option>Awaaz</option>
+                    <option>Pravah</option>
+                    <option>Other</option>
                 </select>
+                <small class="form-text text-muted" >To select multiple click by holding CTRL</small>
             </div>
 
             <div class="form-group">
                 <label>Your Hobbies</label>
-                <select class="form-control" name="hobbies">
-                    <option selected>Choose...</option>
+                <select class="form-control" name="hobbies"  required>
+                    <option value="" hidden disabled selected>Choose...</option>
                     <option>Singing</option>
                     <option>Stamp collecting</option>
                     <option>Dancing</option>
                     <option>Video Games</option>
                     <option>Sports</option>
                     <option>None</option>
-
                 </select>
+                <small class="form-text text-muted" >To select multiple click by holding CTRL</small>
             </div>
 
             <hr class="ruler" style="margin-top: 40px; margin-bottom: 40px;">
@@ -241,7 +245,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label> Rate yourself in Coding Skills : </label>
+                    <label> Your Programming/Coding experiance : </label>
                 </div>
                 <div class="form-group col-md-3">
                     <input type="range" class="form-contrl" name="programmingexperiancevalue" min="0" max="100" />
@@ -293,7 +297,7 @@
             </div>
 
             <hr class="ruler">
-            <button type="submit" class=" form-control btn btn-lg btn-success finalbutton" name="button">Submit</button>
+            <button type="submit" class=" form-control btn btn-lg btn-success finalbutton" >Submit</button>
         </form>
 
     </div>

@@ -58,8 +58,9 @@
         researchgroupinterest: String,
         introextrovert: String,
         moneyorpeace: String,
-        competitiveexamsorder: [String] // ICPC, GRE, CAT, NDA
+        competitiveexamsorder: [String], // ICPC, GRE, CAT, NDA
 
+        todisplay: [String]
     });
     userSchema.plugin(passportLocalMongoose);
 
@@ -186,6 +187,7 @@
     });
 
     app.post("/updatedetails", function(req,res){
+        // console.log(req.body);
         if(req.isAuthenticated()){
             console.log("who submitted = " + req.user.username +" "+req.user._id );
             // console.log(req.body);
@@ -210,7 +212,8 @@
                 hobbies: req.body.hobbies,
                 projectsinterestvalue: req.body.projectsinterestvalue,
                 programmingexperiancevalue: req.body.programmingexperiancevalue,
-                futureorientationorder: req.body.futureorientationorder
+                futureorientationorder: req.body.futureorientationorder,
+                competitiveexamsorder: req.body.competitiveexamsorder
             },function(err){
                 if(err) console.log(err);
                 else console.log("data updated successfully");
@@ -271,7 +274,29 @@
     });
 
     app.post("/privacysettings", function(req,res){
-        
+
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            // res.render('User-privacysettings',{user : req.user});
+            // console.log(req.user);
+
+            var arr = Object.keys(req.body);    // will convert the recieved json object to an array of strings
+            console.log( typeof(arr) );
+            console.log( arr );
+
+            var arr2 = ['fname', 'username', 'email', 'gender', 'age' ]; // these are the must display fields
+            arr2.forEach(function(element){
+                arr.push(element);
+            });
+            User.updateOne( {_id : req.user._id}, {todisplay: arr}, function(err){
+                if(err) console.log(err);
+                else res.send("submitted");
+            } );
+
+        } else{
+            res.redirect('/login');
+        }
+
     });
 
 
