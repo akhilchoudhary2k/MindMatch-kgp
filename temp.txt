@@ -1,4 +1,16 @@
 
+
+
+
+passport.authenticate("local")(req,res,function(){
+    res.redirect("/UserHome" );
+});
+
+
+
+
+
+
 <!-- ['fname', 'username', 'email', 'gender', 'age' ] -->
 
 <div class="formclass">

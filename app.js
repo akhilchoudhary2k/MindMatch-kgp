@@ -30,6 +30,7 @@
 
     // making a schema for the user info
     const userSchema =  mongoose.Schema({
+        isAdmin: Boolean,
         username : String,
         fname: String,
         lname: String,
@@ -107,6 +108,14 @@
         res.redirect("/");
     });
 
+    app.get("/AdminHome", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.render("AdminHome");
+        } else{
+            res.redirect('/adminlogin');
+        }
+    });
 
     app.post("/login",function(req,res){
         const user = new User({
@@ -118,13 +127,14 @@
                 var message = "No such username exists";
                 res.render('login', {message: message});
             }else{
-
+                // console.log(req.body);
                 req.login(user, function(err){
                     if(err){
                         console.log(err);
                     } else{
                         passport.authenticate("local")(req,res,function(){
-                            res.redirect("/UserHome" );
+                            if(req.body.username==='admin') res.redirect("/AdminHome");
+                            else res.redirect("/UserHome" );
                         });
                     }
                 });
@@ -132,13 +142,8 @@
             }
         });
     });
-    app.get("/UserHome",function(req,res){
-        // console.log("in UserHome get route");
-        // console.log(req);  req.user is the object
-        // User.findById(req.user._id , function(err,found){
-        //     console.log(found);
-        // });
 
+    app.get("/UserHome",function(req,res){
         if(req.isAuthenticated()){
             res.locals.username = req.user.username ;
             res.render('UserHome',{user : req.user});
@@ -146,6 +151,7 @@
             res.redirect('/login');
         }
     });
+
     app.post("/register",function(req,res){
         // console.log(req.body);
 
@@ -161,7 +167,7 @@
                     res.render("register", {message: message});
                 } else{
                     // console.log(req.body);
-                    User.updateOne( {_id:user._id},  {email: req.body.email, fname:req.body.name}  , function(err){
+                    User.updateOne( {_id:user._id},  {email: req.body.email, fname:req.body.name, isAdmin:false}  , function(err){
                         if(err) console.log(err);
                     } );
                     passport.authenticate("local")(req,res,function(){
