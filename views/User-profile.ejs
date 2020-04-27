@@ -26,56 +26,78 @@
 <div class="profileclass">
 
 
+    <div class="row">
+        <div class="col">
 
-        <div class="form-row">
-            <div class="col-md-3">
-                <label>FirstName</label>
+
+            <div class="row ">
+                <div class="col-md-6">
+                    <label>FirstName</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <% var fnamefiller = "" + user.fname %>
+                    <input type="text" class="form-control" name="fname" disabled placeholder= <%=fnamefiller%>  >
+                </div>
             </div>
-            <div class="form-group col-md-3">
-                <% var fnamefiller = "" + user.fname %>
-                <input type="text" class="form-control" name="fname" disabled placeholder= <%=fnamefiller%>  >
+
+            <div class="row ">
+                <!-- left2 -->
+                <div class="col-md-6">
+                    <label>UserName</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <% var usernamefiller = "" + user.username %>
+                    <input type="text" class="form-control" name="lname" disabled placeholder= <%=usernamefiller%>  >
+                </div>
+            </div>
+
+            <div class="row ">
+                <!-- left3 -->
+                <div class="col-md-6">
+                    <label>Email Id</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <% var emailfiller = "" + user.email %>
+                    <input type="text" class="form-control" name="lname" disabled placeholder= <%=emailfiller%>  >
+                </div>
+            </div>
+            <div class="row">
+                <!-- left4 -->
+                <div class="col-md-6">
+                    <label>Age</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <% var agefiller = "" + user.age %>
+                    <input type="text" class="form-control" name="lname" disabled placeholder= <%=agefiller%>  >
+                </div>
+            </div>
+            <div class="row">
+                <!-- left5 -->
+                <div class="col-md-6">
+                    <label>Gender</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <% var genderfiller = "" + user.gender %>
+                    <input type="text" class="form-control" name="lname" disabled placeholder= <%=genderfiller%>  >
+                </div>
             </div>
         </div>
-
-        <div class="form-row">
-            <div class="col-md-3">
-                <label>UserName</label>
-            </div>
-            <div class="form-group col-md-3">
-                <% var usernamefiller = "" + user.username %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=usernamefiller%>  >
-            </div>
+        <div class=" imagecontainer col ">
+            <!-- right -->
+            <% var url= "" ; %>
+            <% if(user.gender === "Male") { %>
+            <%     url = "/images/m.png"; %>
+            <% } else if(user.gender === "Female"){ %>
+            <%     url = "/images/f.png" %>
+            <% } else{ %>
+            <%     url = "/images/o.png" %>
+            <% } %>
+            <img src= <%= url %> alt="" class="userimage" >
         </div>
+    </div>
 
-        <div class="form-row">
-            <div class="col-md-3">
-                <label>Email Id</label>
-            </div>
-            <div class="form-group col-md-3">
-                <% var emailfiller = "" + user.email %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=emailfiller%>  >
-            </div>
-        </div>
 
-        <div class="form-row">
-            <div class="col-md-3">
-                <label>Age</label>
-            </div>
-            <div class="form-group col-md-3">
-                <% var agefiller = "" + user.age %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=agefiller%>  >
-            </div>
-        </div>
 
-        <div class="form-row">
-            <div class="col-md-3">
-                <label>Gender</label>
-            </div>
-            <div class="form-group col-md-3">
-                <% var genderfiller = "" + user.gender %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=genderfiller%>  >
-            </div>
-        </div>
 <!-- ###################################################################################################### -->
         <hr class="ruler" style="margin-top: 40px; margin-bottom: 40px;">
 
