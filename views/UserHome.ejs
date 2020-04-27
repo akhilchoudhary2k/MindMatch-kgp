@@ -8,6 +8,12 @@
 
     </div>
 
+    <div style="text-align: center; margin-bottom: 30px; margin-top: 50px;">
+        <span <%= user.hasFilledTheForm ? "hidden" : ""  %> class="warning">
+            You have not filled the User Details form,
+            <a href="/updatedetails">click here</a> to fill the form.
+        </span>
+    </div>
 
     <div class="box">
         <h3>Hi  <%= user.username %> </h3> <br>

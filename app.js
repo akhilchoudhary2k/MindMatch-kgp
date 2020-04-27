@@ -30,6 +30,7 @@
 
     // making a schema for the user info
     const userSchema =  mongoose.Schema({
+        hasFilledTheForm: Boolean,
         isAdmin: Boolean,
         username : String,
         fname: String,
@@ -217,6 +218,7 @@
             // console.log(req.body);
 
             User.updateOne({_id:req.user._id},{
+                hasFilledTheForm: true,
                 lname: req.body.lname,
                 age: req.body.age,
                 gender: req.body.gender,

@@ -1,6 +1,12 @@
 body{
     padding-top: 20px;
 }
+
+.warning{
+    background-color: yellow;
+    /* color: red; */
+}
+
 footer p {
     margin-top: 10%;
     text-align: center;
