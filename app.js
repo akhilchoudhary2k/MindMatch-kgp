@@ -415,6 +415,14 @@
             res.redirect('/login');
         }
     });
+    app.post("/search", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.send("will make it");
+        } else{
+            res.redirect('/login');
+        }
+    });
 
     app.get("/privacysettings", function(req,res){
         if(req.isAuthenticated()){

@@ -5,7 +5,8 @@
         messages array is also accessible                  %>
 
 <div class="jumbotron">
-    <h1> Chat </h1>
+    <% var url = "/chat/" + reciever; %>
+    <h1> Chat <a href=<%=url%> class="btn btn-lg btn-outline-success" style=" margin-left: 39%;" >Refresh</a> </h1>
 </div>
 
 
@@ -27,8 +28,8 @@
 
     <form class="" action= <%=url%> method="post">
         <div class="row" style="margin: 0;" >
-            <input autofocus type="text" class="col-8 form-control" name="newMessage" value="" placeholder="Type something" required>
-            <button type="submit" class="col-4 btn btn-success" name=""  >SEND</button>
+            <input autofocus type="text" class="col-8 form-control expand" name="newMessage" placeholder="Type something" required>
+            <button type="submit" class="col-4 btn btn-success expand" name=""  >SEND</button>
         </div>
     </form>
 

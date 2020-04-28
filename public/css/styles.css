@@ -13,8 +13,18 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.expand2{
+    margin-top: 50px;
+    height: 80px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.expand{
+    height: 60px;
+}
 .send-container{
     width: 40%;
+    height: 60px;
     margin:auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -288,10 +298,12 @@ footer p {
 
 input:checked+.slider {
     background-color: #2196F3;
+    /* background-color: green; */
 }
 
 input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
+    /* box-shadow: 0 0 1px green; */
 }
 
 input:checked+.slider:before {
