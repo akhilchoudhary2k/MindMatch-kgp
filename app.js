@@ -28,10 +28,21 @@
     mongoose.connect( "mongodb://localhost:27017/MindMatchDB", { useNewUrlParser: true, useUnifiedTopology: true } );
     // mongoose.set("useCreateIndex", true);
 
+    const messageSchema = {
+            sender: String,
+            reciever: String,
+            read: Boolean,
+            messages: [ {who: String, value: String} ]
+    };
+
     // making a schema for the user info
     const userSchema =  mongoose.Schema({
+
+        chat: [ messageSchema ],
+
         hasFilledTheForm: Boolean,
         isAdmin: Boolean,
+
         username : String,
         fname: String,
         lname: String,
@@ -79,8 +90,6 @@
         //sending information from server side
         res.render("index", {});
     });
-
-
     app.get("/login", function(req,res){
         var message ="";
         res.render('login', {message : message});
@@ -185,13 +194,131 @@
 
 
 
-
-
-
-
-
-
     // routes when the user is logged in
+
+    app.get("/chat/:reciever", function(req,res){
+        if(req.isAuthenticated()){
+            console.log("GET req. from:" + req.user.username + " to:" + req.params.reciever);
+            res.locals.username = req.user.username ; // just to put username in the navbar
+            var sender = req.user.username;
+            var reciever = req.params.reciever;
+            var array = [];
+            console.log(req.user.chat.length);
+            for(var i=0;i<req.user.chat.length;i++){
+                if(req.user.chat[i].sender == reciever || req.user.chat[i].reciever == reciever ){
+                    array = req.user.chat[i].messages;
+                }
+            }
+            console.log(array);
+            res.render('chat', {sender: sender, reciever: reciever, messages: array});
+        }else{
+            res.redirect('/login');
+        }
+    });
+
+    app.post("/chat/:reciever", function(req,res){
+        if(req.isAuthenticated()){
+            var array = [];
+            console.log("POST req. from:" + req.user.username + " to:" + req.params.reciever);
+            res.locals.username = req.user.username ; // just to put username in the navbar
+
+            //save in reciever's database
+            User.findOne({username: req.params.reciever}, function(err, found){
+                if(!found) console.log("error in finding the user");
+                else{
+                    console.log("updating in "+ req.params.reciever + "'s database");
+                    var chatArray = found.chat;
+                    var temp = -1; // to store the chat array element
+                    var ind  = -1;
+
+                    for(var i=0; i<chatArray.length; i++){
+                        if( chatArray[i]!=null && (chatArray[i].sender == req.user.username || chatArray[i].reciever == req.user.username ) ){
+                            temp = chatArray[i];
+                            ind = i;
+                            break;
+                        }
+                    }
+
+                    // no previous chat
+                    if(temp == -1) {
+                        console.log(" no previous chat");
+                        var m = {who: req.user.username, value: req.body.newMessage};
+                        var messageArray = [];
+                        messageArray.push(m);
+                        var obj = {sender: req.user.username, reciever: req.params.reciever, read:false ,messages: messageArray };
+                        found.chat.unshift(obj);
+                        found.save();
+                        console.log("successfully saved in reciever's database");
+                    } else{
+                    // found previous chat
+                    console.log("found previous chat");
+
+                        var m2 = {who: req.user.username, value: req.body.newMessage};
+                        found.chat[ind].messages.push(m2);
+
+                        var currentChatObject = found.chat[ind];
+                        // delete found.chat[ind];
+                        found.chat.splice(ind, 1);
+                        found.chat.unshift( currentChatObject );
+                        found.save();
+                        console.log("successfully saved in reciever's database");
+                    }
+                }
+            });
+
+            //save in sender's database
+            User.findOne({username: req.user.username}, function(err, found){
+
+                var temp = -1; // to store the chat array element
+                var ind  = -1;
+                console.log("updating in " + req.user.username + "'s database");
+                for(var i=0; i<found.chat.length; i++){
+                    if(  found.chat[i]!=null && (found.chat[i].reciever == req.params.reciever || found.chat[i].sender == req.params.reciever ) ){
+                        temp = found.chat[i];
+                        ind = i;
+                        break;
+                    }
+                }
+
+                //not found i.e. sender is first time sending the message to reciever
+                if(ind==-1){
+                    console.log(" no previous chat");
+                    var m = {who: req.user.username , value: req.body.newMessage};
+                    var messageArray = [];
+                    messageArray.push(m);
+                    var obj = {sender: req.user.username, reciever: req.params.reciever, read:true ,messages: messageArray };
+                    found.chat.unshift(obj);
+                    array = messageArray;
+                    found.save( function(err){
+                        console.log("successfully saved in sender's database");
+                        res.render('chat', {sender: req.user.username, reciever: req.params.reciever, messages: array });
+                    } );
+
+
+                }
+                else{
+                // found i.e. sender has already chatted with reciever
+                    console.log("found previous chat");
+                    var m2 = {who: req.user.username, value: req.body.newMessage};
+                    found.chat[ind].messages.push(m2);
+
+                    var currentChatObject = found.chat[ind];
+                    array = currentChatObject.messages;
+                    // delete found.chat[ind];
+                    found.chat.splice(ind, 1);
+                    found.chat.unshift( currentChatObject );
+                    found.save( function(err){
+                        console.log("successfully saved in sender's database");
+                        res.render('chat', {sender: req.user.username, reciever: req.params.reciever, messages: array });
+                    } );
+                }
+            });
+
+            // res.render('chat', {sender: req.user.username, reciever: req.params.reciever, messages: array });
+        }else{
+            res.redirect('/login');
+        }
+    });
 
     app.get("/profile/:userName", function(req,res){
         if(req.isAuthenticated()){
@@ -274,7 +401,7 @@
     app.get("/messages", function(req,res){
         if(req.isAuthenticated()){
             res.locals.username = req.user.username ;
-            res.render('User-messages',{user : req.user});
+            res.render('User-messages',{user : req.user, User: User});
         } else{
             res.redirect('/login');
         }

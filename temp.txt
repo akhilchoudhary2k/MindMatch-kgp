@@ -2,10 +2,12 @@
 
 
 
-passport.authenticate("local")(req,res,function(){
-    res.redirect("/UserHome" );
-});
-
+chat: [ {
+    sender: String,
+    reciever: String,
+    read: Boolean,
+    messages: [ {who: String, value: String} ]
+} ],
 
 
 

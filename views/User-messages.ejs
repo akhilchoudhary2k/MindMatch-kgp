@@ -4,8 +4,38 @@
         user object is accessible here  %>
 
     <div class="jumbotron">
-        <h1> Chat/Messages </h1>
+        <h1> Messages for <%=user.username %> </h1>
     </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Recent messages</h2>
+            <p class="lint">
+                Total = <%= user.chat.length %>
+            </p>
+        </div>
+    </div>
+
+
+    <% user.chat.forEach( function(chatElement){ %>
+
+        <div class="message row">
+            <div class="col-3">
+                <img src="/images/o.png" style="height: 30px; width: 30px;" alt="">
+                <% var username = chatElement.sender == user.username ? chatElement.reciever : chatElement.sender; %>
+                <b><%= username %></b>
+            </div>
+            <div class="col-6">
+                <% var m = chatElement.messages[chatElement.messages.length - 1] %>
+                <b> <%= m.who %> : </b>  <%= m.value.substr(0,15)+ "..." %>
+            </div>
+            <div class="col-3">
+                <% var url = "/chat/" + username %>
+                <a href= <%= url %> class="btn btn-outline-success form-control" > CHAT </a>
+            </div>
+        </div>
+    <% } ); %>
+
 
 
 

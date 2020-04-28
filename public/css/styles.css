@@ -2,6 +2,33 @@ body{
     padding-top: 20px;
 }
 
+.message{
+    height: 90px;
+    width: 35%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    padding-top: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.send-container{
+    width: 40%;
+    margin:auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.chat-container{
+    position: relative;
+    padding: 30px;
+    background-color: white;
+    width: 40%;
+    height: 400px;
+    margin: auto;
+    overflow: auto;
+    /* border-bottom: 3px solid black; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .warning{
     background-color: yellow;
     /* color: red; */

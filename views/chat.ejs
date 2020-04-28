@@ -1,0 +1,39 @@
+<%- include('partials/user-header') -%>
+
+   <%#  as this is a ejs file
+        usernames of sender and reciever are accessible here
+        messages array is also accessible                  %>
+
+<div class="jumbotron">
+    <h1> Chat </h1>
+</div>
+
+
+<div class="box">
+    <h2> <%= sender %> --> <%= reciever %> </h2>
+</div>
+
+<div class="chat-container" >
+        <!-- do some database work and show the prev chats -->
+        <% messages.forEach(function(element){ %>
+            <p> <b> <%=element.who +":"%> </b> <%= element.value %>  </p>
+        <% }); %>
+</div>
+
+
+
+<div class="send-container">
+    <% var url = "/chat/" + reciever; %>
+
+    <form class="" action= <%=url%> method="post">
+        <div class="row" style="margin: 0;" >
+            <input autofocus type="text" class="col-8 form-control" name="newMessage" value="" placeholder="Type something" required>
+            <button type="submit" class="col-4 btn btn-success" name=""  >SEND</button>
+        </div>
+    </form>
+
+</div>
+
+
+
+<%- include('partials/user-footer') -%>

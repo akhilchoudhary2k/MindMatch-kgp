@@ -1,7 +1,8 @@
 <%- include('partials/user-header') -%>
 
 <%#  as this is a ejs file
-        ** here user is the person whose profile is to be displayed **
+        ** here 'user' is the person whose profile is to be displayed **
+        ** 'username' is the username of person who requested this page
         user object is accessible here  %>
 
     <div class="jumbotron">
@@ -96,7 +97,19 @@
         </div>
     </div>
 
+    <hr class="ruler" style="margin-top: 40px; margin-bottom: 40px;">
 
+
+
+    <div  <%= username===user.username ? "hidden" : "" %>    class="row">
+        <div class="col">
+            <% var url = "/chat/" + user.username; %>
+            <a class="btn btn-primary col-md-12" href=<%= url %> >Send a Message</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-success col-md-12" href="/connect">Connect</a>
+        </div>
+    </div>
 
 <!-- ###################################################################################################### -->
         <hr class="ruler" style="margin-top: 40px; margin-bottom: 40px;">
