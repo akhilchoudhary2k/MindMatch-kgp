@@ -1,6 +1,6 @@
     <%- include('partials/user-header') -%>
 
-       <%#  as this is a ejs file
+    <%#  as this is a ejs file
             user object is accessible here  %>
 
     <div class="jumbotron">
@@ -15,11 +15,47 @@
     </div>
 
     <div class="box">
-        <h3>Hi  <%= user.username %> </h3> <br>
+        <h2>Hi <%= user.username %> </h2> <br>
         <h5>Welcome to your HOMEPAGE</h5>
     </div>
 
+    <div class="container">
+        <h3 style="margin-top:70px;">Your Connections = <%=user.connections.length%> </h3>
+        <table class="table table-striped  mytable">
+            <thead class="table-dark" >
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">View</th>
+                </tr>
+            </thead>
 
+            <tbody>
+                <% for(var i=0; i < user.connections.length ; i++){ %>
+                    <tr>
+                        <th scope="row"> <%= i+1 %> </th>
+                        <td> <img src="/images/o.png" style="height:25px; width:25px;"> <b><%=user.connections[i]%></b> </td>
+                        <td>-</td>
+                        <td>-</td>
+                        <% var link = "/profile/" + user.connections[i] %>
+                        <% var link2 = "/chat/"+ user.connections[i] %>
+                        <td style="width:300px;" >
+
+                            <div class="row">
+                                <a class="btn btn-success col-5" href= <%=link%> > View Profile </a>
+                                <a style="margin-left: 15px;" class="btn btn-primary col-5" href=<%=link2%> >Chat</a>
+                            </div>
+
+                        </td>
+                    </tr>
+                <% } %>
+
+            </tbody>
+
+        </table>
+    </div>
 
 
     <%- include('partials/user-footer') -%>

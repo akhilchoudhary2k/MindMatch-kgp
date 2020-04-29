@@ -1,6 +1,9 @@
 body{
     padding-top: 20px;
 }
+.mytable{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .request-element{
     /* height: 80px; */
     width: 50%;
@@ -214,7 +217,7 @@ footer p {
 
 /* Style page content */
 .main {
-    margin-left: 160px;
+    margin-left: 180px;
     /* Same as the width of the sidebar */
     /* padding: 0px 10px; */
 }

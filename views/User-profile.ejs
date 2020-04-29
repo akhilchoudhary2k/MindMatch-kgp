@@ -105,7 +105,17 @@
     <div  <%= username===user.username ? "hidden" : "" %>    class="row">
         <div class="col">
             <% var url = "/chat/" + user.username; %>
-            <a class="btn btn-primary col-md-12" href=<%= url %> >Send a Message</a>
+
+            <% var show = false; %>
+            <% if( user.connections.includes(username) ){ %>
+            <%     show = true; %>
+            <% } %>
+            <% console.log(show); %>
+            <form action=<%= url %> method="get">
+                <button <%= show ? "" : "disabled"  %> type="button" class="btn btn-primary col-md-12" >Send a Message</button>
+                <small class="form-text text-muted" >You can use this only after connecting</small>
+            </form>
+            <!-- <a class="btn btn-primary col-md-12" href=<%= url %> >Send a Message</a> -->
         </div>
         <div class="col">
 

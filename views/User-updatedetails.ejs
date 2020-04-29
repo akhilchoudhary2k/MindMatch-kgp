@@ -31,7 +31,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>LastName</label>
-                    <input type="text" class="form-control" name="lname" placeholder="LastName">
+                    <% var filler = "" + user.lname %>
+                    <input type="text" class="form-control" name="lname" value=<%=filler%> placeholder="LastName">
                 </div>
             </div>
 

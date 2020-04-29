@@ -1,5 +1,15 @@
 
 
+
+<tr>
+    <th scope="row">i</th>
+    <td>-</td>
+    <td>-</td>
+    <td>@-</td>
+</tr>
+
+
+
 //put the connection request in sender's sentrequests chatArray
 // if( ! req.user.sentrequests.includes(req.params.username) ){
 //     User.findOne({username: req.user.username}, function(err, u){
