@@ -1,0 +1,135 @@
+<%- include('partials/user-header') -%>
+
+   <%#  as this is a ejs file
+        resultArray is accessible here  %>
+
+        <div class="jumbotron">
+            <h1> Search </h1>
+        </div>
+
+        <div class="container">
+            <div class="box">
+                <h1>Search Results</h1>
+                <a class="btn btn-success" href="/search">Search Again</a>
+                <p class="lint" style="margin-top:40px; margin-bottom: 30px;">
+                    Users Found =  <%= resultArray.length %>
+                </p>
+            </div>
+        </div>
+
+        <% var a = Math.floor(resultArray.length/3) ; %>
+        <% var b = resultArray.length % 3; %>
+        <% console.log(a, b); %>
+
+<div class="container results-container">
+        <% var ind = 0; %>
+        <% for(var i=0; i<a ; i++){ %>
+                <!-- making a rows -->
+                <div class="row">
+                    <!-- ************************************************************** -->
+                    <div class="col-3 result-element " >
+                        <%var temp = resultArray[ind] %>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <% var g; %>
+                                <%if(! temp.gender ) { %>
+                                <%    g = 'o'; %>
+                                <% }else if(temp.gender == "Others"){ %>
+                                <%     g = 'o'; %>
+                                <% } else{ %>
+                                <%    g = temp.gender == "Male" ? 'm' : 'f'; %>
+                                <% } %>
+                                <% var url = "images/"+g+".png"; %>
+                                <img src=<%=url%> style="height: 60px; width:60px;">
+                            </div>
+                            <div class="col-8" style="text-align: left">
+                                Username : <b><%= temp.username %></b> <br>
+                                First Name: <b><%= temp.fname %></b>
+                            </div>
+                        </div>
+                        <% var url2 = "/profile/" + temp.username %>
+                        <a href=<%=url2%> class="form-control btn btn-sm btn-success" style="margin-top: 20px;">See Profile</a>
+
+                    </div>
+                    <div class="col-3 result-element" >
+                        <%var temp = resultArray[ind+1] %>
+                        <div class="row">
+                            <div class="col-4">
+                                <% var g; %>
+                                <%if(! temp.gender ) { %>
+                                <%    g = 'o'; %>
+                                <% }else if(temp.gender == "Others"){ %>
+                                <%     g = 'o'; %>
+                                <% } else{ %>
+                                <%    g = temp.gender == "Male" ? 'm' : 'f'; %>
+                                <% } %>
+                                <% var url = "images/"+g+".png"; %>
+                                <img src=<%=url%> style="height: 60px; width:60px;">
+                            </div>
+                            <div class="col-8" style="text-align: left">
+                                Username : <b><%= temp.username %></b> <br>
+                                First Name: <b><%= temp.fname %></b>
+                            </div>
+                        </div>
+                        <% var url2 = "/profile/" + temp.username %>
+                        <a href=<%=url2%> class="form-control btn btn-sm btn-success" style="margin-top: 20px;">See Profile</a>
+                    </div>
+                    <div class="col-3 result-element" >
+                        <%var temp = resultArray[ind+2] %>
+                        <div class="row">
+                            <div class="col-4">
+                                <%if(! temp.gender ) { %>
+                                <%    g = 'o'; %>
+                                <% }else if(temp.gender == "Others"){ %>
+                                <%     g = 'o'; %>
+                                <% } else{ %>
+                                <%    g = temp.gender == "Male" ? 'm' : 'f'; %>
+                                <% } %>
+                                <% var url = "images/"+g+".png"; %>
+                                <img src=<%=url%> style="height: 60px; width:60px;">
+                            </div>
+                            <div class="col-8" style="text-align: left">
+                                Username : <b><%= temp.username %></b> <br>
+                                First Name: <b><%= temp.fname %></b>
+                            </div>
+                        </div>
+                        <% var url2 = "/profile/" + temp.username %>
+                        <a href=<%=url2%> class="form-control btn btn-sm btn-success" style="margin-top: 20px;">See Profile</a>
+                    </div>
+                </div>
+        <% ind = ind + 3; %>
+        <% } %>
+
+        <div class="row">
+            <% for( ;ind < resultArray.length ; ind ++ ){ %>
+                <div class="col-3 result-element" >
+                    <%var temp = resultArray[ind] %>
+                    <div class="row">
+                        <div class="col-4">
+                            <% var g; %>
+                            <%if(! temp.gender ) { %>
+                            <%    g = 'o'; %>
+                            <% }else if(temp.gender == "Others"){ %>
+                            <%     g = 'o'; %>
+                            <% } else{ %>
+                            <%    g = temp.gender == "Male" ? 'm' : 'f'; %>
+                            <% } %>
+                            <% var url = "images/"+g+".png"; %>
+                            <img src=<%=url%> style="height: 60px; width:60px;">
+                        </div>
+                        <div class="col-8" style="text-align: left">
+                            Username : <b><%= temp.username %></b> <br>
+                            First Name: <b><%= temp.fname %></b>
+                        </div>
+                    </div>
+                    <% var url2 = "/profile/" + temp.username %>
+                    <a href=<%=url2%> class="form-control btn btn-sm btn-success" style="margin-top: 20px;">See Profile</a>
+                </div>
+            <% } %>
+        </div>
+
+</div>
+
+
+<%- include('partials/user-footer') -%>

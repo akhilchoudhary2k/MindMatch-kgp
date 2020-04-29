@@ -8,6 +8,7 @@
     const session = require('express-session');
     const passport = require("passport");
     const passportLocalMongoose = require('passport-local-mongoose');
+    const _ = require('lodash');
 
     //setup server
     const app = express();
@@ -415,7 +416,61 @@
             res.redirect('/login');
         }
     });
+
+    // ********************************************************************************************
+    // make these
+
+
     app.post("/search", function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+
+            var q = req.body.query;
+            var wordsArray = q.trim().split(" ");
+            // convert all the words in it to lowercase
+            for(var i=0;i<wordsArray.length;i++){
+                wordsArray[i] = _.lowerCase(wordsArray[i]);
+            }
+            console.log(wordsArray);
+
+            var resultArray = [];
+            User.find({}, function(err, found ){
+
+                doWork(found, resultArray, wordsArray, function(){
+                    console.log("render the results page");
+                    res.render('search-results', {resultArray: resultArray});
+                } );
+
+            });
+
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+    function doWork(found, resultArray, wordsArray , callback){
+        //iterate over all users
+        for(var i=0;i<found.length;i++){
+            var a = _.lowerCase(found[i].username);
+            var b = _.lowerCase(found[i].fname);
+            var c = (found[i].lname) ?  _.lowerCase(found[i].lname) : "-1" ;
+
+            //for all the elements of wordsArray
+            for(var k=0 ; k<wordsArray.length ; k++){
+                var bool = ( a.includes(wordsArray[k]) || b.includes(wordsArray[k]) || c.includes(wordsArray[k]) );
+                if(bool) {
+                    // console.log("suitable=" + found[i].username);
+                    resultArray.push(found[i]);
+                    break;
+                }
+            }
+        }
+
+        console.log("hi I am doWork() function");
+        callback();
+    }
+
+    app.get("/connect/:username", function(req,res){
         if(req.isAuthenticated()){
             res.locals.username = req.user.username ;
             res.send("will make it");
@@ -423,6 +478,7 @@
             res.redirect('/login');
         }
     });
+    // ************************************************************************************************
 
     app.get("/privacysettings", function(req,res){
         if(req.isAuthenticated()){

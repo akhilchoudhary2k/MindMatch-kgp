@@ -21,9 +21,11 @@
 
         <div class="message row">
             <div class="col-3">
-                <img src="/images/o.png" style="height: 30px; width: 30px;" alt="">
                 <% var username = chatElement.sender == user.username ? chatElement.reciever : chatElement.sender; %>
-                <b><%= username %></b>
+                <% var profileURL = "/profile/"+username; %>
+                <a style="color: black;" href=<%= profileURL %> > <img src="/images/o.png" style="height: 30px; width: 30px;" alt="">
+                <b><%= username %></b> </a>
+
             </div>
             <div class="col-6">
                 <% var m = chatElement.messages[chatElement.messages.length - 1] %>

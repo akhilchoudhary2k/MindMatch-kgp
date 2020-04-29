@@ -1,5 +1,44 @@
 
 
+<div class="container results-container">
+    <!-- making a rows -->
+    <div class="row">
+        <div class="col-3 result-element " >
+            1st
+        </div>
+        <div class="col-3 result-element" >
+            2nd
+        </div>
+    </div>
+</div>
+
+
+
+
+
+for(var i=0;i<found.length;i++){
+    var a = _.lowerCase(found[i].username);
+    var b = _.lowerCase(found[i].fname);
+    var c = (found[i].lname) ?  _.lowerCase(found[i].lname) : "-1" ;
+    // console.log(a, b, c);
+
+    //for all the elements of wordsArray
+    for(var k=0 ; k<wordsArray.length ; k++){
+        var bool = ( a.includes(wordsArray[k]) || b.includes(wordsArray[k]) || c.includes(wordsArray[k]) );
+        if(bool) {
+            console.log("suitable=" + found[i].username);
+            resultArray.push(found[i]);
+            break;
+        }
+    }
+}
+
+
+
+
+
+
+
 
 
 chat: [ {

@@ -107,7 +107,8 @@
             <a class="btn btn-primary col-md-12" href=<%= url %> >Send a Message</a>
         </div>
         <div class="col">
-            <a class="btn btn-success col-md-12" href="/connect">Connect</a>
+            <% var url2 = "/connect/" + user.username; %>
+            <a class="btn btn-success col-md-12" href= <%= url2 %> >Connect</a>
         </div>
     </div>
 
