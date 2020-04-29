@@ -39,6 +39,9 @@
     // making a schema for the user info
     const userSchema =  mongoose.Schema({
 
+        connections: [String], // will contain the usernames of the person who want to connect
+        requests: [String],
+        sentrequests: [String],
         chat: [ messageSchema ],
 
         hasFilledTheForm: Boolean,
@@ -330,7 +333,7 @@
             User.findOne( {username: req.params.userName}, function(err,foundUser){
                 if(err) console.log(err);
                 else{
-                    if(foundUser) res.render('User-profile',{user : foundUser});
+                    if(foundUser) res.render('User-profile',{user : foundUser });
                     else res.send("No such user");
                 }
             } );
@@ -417,8 +420,6 @@
         }
     });
 
-    // ********************************************************************************************
-    // make these
 
 
     app.post("/search", function(req,res){
@@ -447,7 +448,6 @@
             res.redirect('/login');
         }
     });
-
     function doWork(found, resultArray, wordsArray , callback){
         //iterate over all users
         for(var i=0;i<found.length;i++){
@@ -470,14 +470,118 @@
         callback();
     }
 
-    app.get("/connect/:username", function(req,res){
+    // ********************************************************************************************
+
+    app.post("/connect/:username", function(req,res){
         if(req.isAuthenticated()){
             res.locals.username = req.user.username ;
-            res.send("will make it");
+
+            // put the connection request in sender's sentrequests chatArray
+            if( ! req.user.sentrequests.includes(req.params.username) ){
+                User.findOne({username: req.user.username}, function(err, u){
+                    u.sentrequests.push(req.params.username);
+                    u.save();
+                });
+
+            }
+
+            //put the connection request in :username 's requests array
+            User.findOne({username: req.params.username}, function(err, found){
+                if(err) console.log(err);
+                else{
+                    // if not already present then only insert
+                    if( !found.requests.includes(req.user.username) ){
+                        found.requests.unshift( req.user.username );
+                        found.save();
+                        console.log("inserted successfully");
+                    } else console.log("already sent");
+                }
+            });
+
+            var url = '/profile/' + req.params.username;
+            res.redirect( url );
+            // res.send("will make it");
         } else{
             res.redirect('/login');
         }
     });
+
+    app.get('/requests',function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            res.render('requests', {user: req.user});
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+    app.post('/requests',function(req,res){
+        if(req.isAuthenticated()){
+            res.locals.username = req.user.username ;
+            console.log("sender = " + req.body.button + ", reciever = " + req.user.username);
+
+            // update in sender's database
+            User.findOne({username: req.body.button}, function(err, s){
+                if(err) console.log(err);
+                else{
+                    console.log("saving in sender's database");
+                    if( ! s.connections.includes(req.user.username) ){
+                        s.connections.push(req.user.username);
+                    }
+
+                    var ind = -1;
+                    for(var i=0;i<s.sentrequests.length;i++){
+                        if(s.sentrequests[i] == req.user.username ){
+                            ind = i;
+                            break;
+                        }
+                    }
+                    if(ind != -1) { s.sentrequests.splice(ind, 1); }
+                    s.save();
+                }
+            });
+
+            //update in reciever's database
+            User.findOne({username: req.user.username}, function(err,reciever){
+                if(err) console.log(err);
+                else{
+                    console.log("saving in reciever's database");
+
+                    // to handle the resubmission of the form so that duplicate entries are not saved
+                    if( ! reciever.connections.includes(req.body.button) ){
+                        reciever.connections.push(req.body.button);
+                    }
+
+                    var ind = -1;
+                    for(var i=0;i<reciever.requests.length;i++){
+                        if(reciever.requests[i] == req.body.button ){
+                            ind = i;
+                            break;
+                        }
+                    }
+                    if(ind != -1){
+                        reciever.requests.splice(ind,1);
+                    }
+                    doWork2(reciever, function(){
+                        console.log("saved in  reciever's database");
+                        res.render('requests', {user: reciever});
+                    });
+                    // reciever.save();
+
+                }
+            });
+
+            // res.render('requests', {user: req.user});
+        } else{
+            res.redirect('/login');
+        }
+    });
+
+    function doWork2(user, callback){
+        user.save();
+        callback();
+    }
+
     // ************************************************************************************************
 
     app.get("/privacysettings", function(req,res){

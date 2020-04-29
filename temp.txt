@@ -1,16 +1,13 @@
 
 
-<div class="container results-container">
-    <!-- making a rows -->
-    <div class="row">
-        <div class="col-3 result-element " >
-            1st
-        </div>
-        <div class="col-3 result-element" >
-            2nd
-        </div>
-    </div>
-</div>
+//put the connection request in sender's sentrequests chatArray
+// if( ! req.user.sentrequests.includes(req.params.username) ){
+//     User.findOne({username: req.user.username}, function(err, u){
+//         u.sentrequests.push(req.params.username);
+//         u.save();
+//     });
+//
+// }
 
 
 

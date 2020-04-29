@@ -1,6 +1,14 @@
 body{
     padding-top: 20px;
 }
+.request-element{
+    /* height: 80px; */
+    width: 50%;
+    margin: auto;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .result-element{
     text-align: center;
     padding: 10px;
@@ -166,7 +174,7 @@ footer p {
 .sidenav {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
-    width: 160px;
+    width: 180px;
     /* Set the width of the sidebar */
     position: fixed;
     /* Fixed Sidebar (stay in place on scroll) */

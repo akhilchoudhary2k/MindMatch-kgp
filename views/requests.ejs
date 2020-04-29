@@ -1,0 +1,44 @@
+<%- include('partials/user-header') -%>
+
+   <%#  as this is a ejs file
+        user object is accessible here  %>
+
+<div class="jumbotron">
+    <h1> Requests </h1>
+</div>
+
+<div class="box">
+    <h3>Hi  <%= user.username %> </h3> <br>
+    <h5>These are connection requests</h5>
+    <p> Count = <%=user.requests.length%> </p>
+</div>
+
+<div class="container">
+    <%  user.requests.forEach(function(element){ %>
+        <div class="request-element">
+
+
+            <div class="row">
+                <div class="col-1">
+                    <img src="/images/o.png" style="height:40px; width:40px;">
+                </div>
+                <div class="col-3">
+                    <p> <%=element%> </p>
+                </div>
+                <div class="col-4">
+                    <% var url1 = "/profile/" + element %>
+                    <a class="btn btn-success" href=<%=url1%> >View Profile</a>
+                </div>
+                <form class="col-4" action="/requests" method="post">
+                    <button class="btn btn-primary" type="submit" name="button" value=<%= element %> >Accept</button>
+                </form>
+            </div>
+
+
+        </div>
+    <% }); %>
+</div>
+
+
+
+<%- include('partials/user-footer') -%>
