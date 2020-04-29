@@ -1,2 +1,54 @@
-hi
-Admin
+<%- include('partials/admin-header') -%>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+</div>
+
+<!-- cards -->
+<div class="row">
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-header align-items-center justify-content-between">
+                <h5>Total Users</h5>
+            </div>
+            <div class="card-body"> <h1><%= userCount %></h1> </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-header">
+                <h5>Total Connections</h5>
+            </div>
+            <div class="card-body"> <h1><%= conCount %></h1> </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-header">
+                <h5>Total Messages</h5>
+            </div>
+            <div class="card-body"> <h1><%= messCount %></h1> </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-9">
+        <div class="card mb-4">
+
+            <div class="card-body">
+                CANVAS
+                <canvas id="canvas" width="300" height="300">  </canvas>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<%- include('partials/admin-footer') -%>

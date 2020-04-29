@@ -138,9 +138,31 @@
     });
 
     app.get("/AdminHome", function(req, res) {
-        if (req.isAuthenticated()) {
-            res.locals.username = req.user.username;
-            res.render("AdminHome");
+        if (req.isAuthenticated() && req.user.username == 'admin') {
+            var u=0, c=0, m=0; // users connections messages
+
+            User.find({}, function(err, found){
+                u = found.length;
+                found.forEach(function(user){
+
+                    c+= user.connections.length;
+                    var arr = user.chat;
+
+                    console.log(user.username, arr );
+                    if(arr && arr.length>0){
+                        arr.forEach(function(obj){
+                            // if(obj.messages) m+= obj.messages.length;
+                            if(obj) m+= obj.messages.length;
+                        });
+                    }
+                });
+                console.log("m", m);
+
+
+
+                res.render("AdminHome", { userCount :u, conCount: c/2, messCount: m/2  });
+            });
+
         } else {
             res.redirect('/adminlogin');
         }

@@ -22,7 +22,7 @@
     <div class="container">
         <h3 style="margin-top:70px;">Your Connections = <%=user.connections.length%> </h3>
         <table class="table table-striped  mytable">
-            <thead class="table-dark" >
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Username</th>
@@ -34,22 +34,28 @@
 
             <tbody>
                 <% for(var i=0; i < user.connections.length ; i++){ %>
-                    <tr>
-                        <th scope="row"> <%= i+1 %> </th>
-                        <td> <img src="/images/o.png" style="height:25px; width:25px;"> <b><%=user.connections[i]%></b> </td>
-                        <td>-</td>
-                        <td>-</td>
-                        <% var link = "/profile/" + user.connections[i] %>
-                        <% var link2 = "/chat/"+ user.connections[i] %>
-                        <td style="width:300px;" >
+                <tr>
+                    <th scope="row"> <%= i+1 %> </th>
+                    <td> <img src="/images/o.png" style="height:25px; width:25px;"> <b><%=user.connections[i]%></b> </td>
+                    <td>-</td>
+                    <td>-</td>
+                    <% var link = "/profile/" + user.connections[i] %>
+                    <% var link2 = "/chat/"+ user.connections[i] %>
+                    <td style="width:300px;">
 
-                            <div class="row">
+
+                        <!-- <div class="btn-group">
+                            <button type="button" style="width: 100px;" class=" btn btn-success">View </button>
+                            <button type="button" style="width: 100px;" class=" btn btn-outline-secondary">Chat</button>
+                        </div> -->
+
+                        <div class="row">
                                 <a class="btn btn-success col-5" href= <%=link%> > View Profile </a>
                                 <a style="margin-left: 15px;" class="btn btn-primary col-5" href=<%=link2%> >Chat</a>
-                            </div>
+                        </div>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 <% } %>
 
             </tbody>
