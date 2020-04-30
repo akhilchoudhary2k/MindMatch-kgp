@@ -313,15 +313,15 @@
 
         <div class="form-row">
             <div class="col-md-4">
-                <label>Socities</label>
+                <label>Type of course</label>
             </div>
             <div class="form-group col-md-4">
-                <% var socitiesfiller = "" + user.socities %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=socitiesfiller%>  >
+                <% var filler = "" + user.coursetype %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
             </div>
             <label class="switch"  >
-                <% var b = user.todisplay.includes( "socities" ); %>
-                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="socities" >
+                <% var b = user.todisplay.includes( "coursetype" ); %>
+                <input  <%= b ? "checked" : "" %> type="checkbox" class="" name="coursetype" >
                 <span class="slider round"></span>
             </label>
         </div>

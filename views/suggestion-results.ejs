@@ -1,0 +1,42 @@
+<%- include('partials/user-header') -%>
+
+<%#  as this is a ejs file
+        array is accessible here which contains the % values  %>
+
+    <div class="jumbotron">
+        <h1> Get Suggestions </h1>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Results</h2>
+        </div>
+    </div>
+
+
+    <% array.forEach( function(person){ %>
+
+        <div class="message row">
+            <div class="col-3">
+                <% var username = person.username; %>
+                <% var profileURL = "/profile/"+username; %>
+                <a style="color: black;" href=<%= profileURL %> > <img src="/images/o.png" style="height: 30px; width: 30px;" alt="">
+                <b><%= username %></b> </a>
+
+            </div>
+            <div class="col-6">
+                % Match = <b><%=  person.percentage %></b>
+            </div>
+            <div class="col-3">
+                <% var url = "/profile/" + username %>
+                <a href= <%= url %> class="btn btn-success form-control" > View Profile </a>
+            </div>
+        </div>
+
+    <% } ); %>
+
+
+
+
+
+<%- include('partials/user-footer') -%>

@@ -16,5 +16,19 @@
         </div>
     </div>
 
+    <div style="text-align: center; margin-bottom: 30px; margin-top: 50px;">
+        <span <%= user.hasFilledTheForm ? "hidden" : ""  %> class="warning">
+            You have not filled the User Details form,
+            <a href="/updatedetails">click here</a> to fill the form.
+        </span>
+    </div>
+
+    <div class="container text-center">
+        <form class="" action="/getsuggestions" method="post">
+            <button <%= user.hasFilledTheForm ? "" : "disabled" %> type="submit" class="getsuggestionbutton btn btn-success" name="button"> <h3>Generate</h3> </button>
+        </form>
+    </div>
+
+
 
 <%- include('partials/user-footer') -%>

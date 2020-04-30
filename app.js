@@ -75,7 +75,7 @@
         sportsvalue: Number,
         techvalue: Number,
         socultvalue: Number,
-        socities: [String], // array of strings
+        coursetype: String,
         hobbies: [String], // array of strings
         favouritesubject: String, //out of PCM
         programmingexperiancevalue: Number,
@@ -462,7 +462,7 @@
                 introextrovert: req.body.introextrovert,
                 depcinterest: req.body.depcinterest,
                 researchgroupinterest: req.body.researchgroupinterest,
-                socities: req.body.socities,
+                coursetype: req.body.coursetype,
                 hobbies: req.body.hobbies,
                 projectsinterestvalue: req.body.projectsinterestvalue,
                 programmingexperiancevalue: req.body.programmingexperiancevalue,
@@ -490,6 +490,50 @@
             res.redirect('/login');
         }
     });
+
+    app.post("/getsuggestions", function(req,res){
+        if (req.isAuthenticated()) {
+            res.locals.username = req.user.username;
+
+            var array = []; // {username , firstname, % value}
+            User.find({}, function(err, found){
+                var ind=0;
+
+                // if there are no users other than admin and self
+                if(found.length <=2 ) res.render("suggestion-results", {array: array});
+                else{
+                    found.forEach(function(user){
+                        if(user.username != 'admin' && user.username != req.user.username){
+                            ind++;
+                            var obj = {username: user.username, fname: user.fname, percentage: 0};
+                            getpercentage( req.user , user, obj, function(){
+                                array.push( obj );
+                            } );
+                            if(ind == found.length-2 ){
+                                // sort the array in decreasing order of % match value
+                                array.sort(function(a,b){
+                                    if(a.percentage  >  b.percentage) return -1;
+                                    if(a.percentage  <  b.percentage) return  1;
+                                    else return 0;
+                                });
+                                res.render("suggestion-results", {array: array});
+                                console.log("most finally", array.length);
+                            }
+                        }
+                    });
+                }
+            });
+        } else {
+            res.redirect('/login');
+        }
+    });
+
+    function getpercentage(me, other, obj, callback){
+
+        obj.percentage = 50 +  Math.floor( 50*Math.random() );
+        // do
+        callback();
+    }
 
     app.get("/updatedetails", function(req, res) {
         if (req.isAuthenticated()) {

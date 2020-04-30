@@ -112,7 +112,7 @@
             <% } %>
             <% console.log(show); %>
             <%# make use of this condition to disable the chat option %>
-            
+
             <a class="btn btn-primary col-md-12" href=<%= url %> >Send a Message</a>
         </div>
         <div class="col">
@@ -260,10 +260,10 @@
 
         <div class="form-row">
             <div class="col-md-3">
-                <label>Socities</label>
+                <label>Type of course</label>
             </div>
             <div class="form-group col-md-3">
-                <% var filler = user.todisplay.includes("socities") ? filler = "" + user.socities : "HIDDEN"  %>
+                <% var filler = user.todisplay.includes("coursetype") ? filler = "" + user.coursetype : "HIDDEN"  %>
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
             </div>
             <div class="col-md-3">
