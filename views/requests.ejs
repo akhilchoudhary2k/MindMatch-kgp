@@ -7,11 +7,15 @@
     <h1> Requests </h1>
 </div>
 
-<div class="box">
-    <h3>Hi  <%= user.username %> </h3> <br>
-    <h5>These are connection requests</h5>
-    <p> Count = <%=user.requests.length%> </p>
+<div class="container">
+    <div class="box">
+        <h2>Recent Requests</h2>
+        <p class="lint">
+            Total = <%=user.requests.length%>
+        </p>
+    </div>
 </div>
+
 
 <div class="container">
     <%  user.requests.forEach(function(element){ %>

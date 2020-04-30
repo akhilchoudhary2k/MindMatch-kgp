@@ -528,10 +528,120 @@
         }
     });
 
-    function getpercentage(me, other, obj, callback){
 
-        obj.percentage = 50 +  Math.floor( 50*Math.random() );
-        // do
+    function getpercentage(me, other, obj, callback){
+        // obj.percentage = 50 +  Math.floor( 50*Math.random() );
+        var currentScore=0, totalScore=1;
+
+        var a = Math.abs(me.age-other.age);
+        totalScore+=50;
+        if( a<=2 ){
+            currentScore+=50;
+        } else if( a<=5 ){
+            currentScore+=20;
+        } else{
+            currentScore+=0;
+        }
+        totalScore+=50;
+        if( me.department == other.department ) currentScore+=50;
+
+        totalScore+=50;
+        if( _.lowerCase(me.hometown)==_.lowerCase(other.hometown) ) currentScore+=50;
+
+        totalScore+=10;
+        if( me.coaching == other.coaching ) currentScore+=10;
+
+        totalScore+=10;
+        if( me.fromkota == other.fromkota ) currentScore+=10;
+
+        totalScore+=20;
+        if( me.eaa == other.eaa ) currentScore+=20;
+
+        totalScore+=100;
+        if( me.introextrovert == other.introextrovert ) currentScore+=100;
+
+        totalScore+=100;
+        if( me.depcinterest == other.depcinterest ) currentScore+=100;
+
+        totalScore+=50;
+        if( me.researchgroupinterest == other.researchgroupinterest ) currentScore+=50;
+
+        totalScore+=200;
+        if( me.coursetype == other.coursetype ) currentScore+=200;
+
+        totalScore+=100;
+        if( me.futureorientationorder == other.futureorientationorder ) currentScore+=100;
+
+        // now comes the slider fields
+        // we will first calcuate the % difference in that slider's value
+        // and then the % similarity value and that value will be multiplied by the weight
+        // df --->  difference fraction  i.e.  |a-b| / ((a+b)/2)
+        var df;
+        if(me.cgpa && other.cgpa){
+            df = ( Math.abs(me.cgpa - other.cgpa) )/( (me.cgpa+other.cgpa)/2 );
+            totalScore+=50;
+            currentScore+= 50*(1-df);
+        }
+
+        if(me.sportsvalue && other.sportsvalue){
+            df = (Math.abs(me.sportsvalue - other.sportsvalue))/((me.sportsvalue + other.sportsvalue)/2);
+            totalScore+=50;
+            currentScore += 50*(1-df);
+        }
+
+        if(me.techvalue && other.techvalue){
+            df = (Math.abs(me.techvalue - other.techvalue))/((me.techvalue + other.techvalue)/2);
+            totalScore+=50;
+            currentScore += 50*(1-df);
+        }
+
+        if(me.socultvalue && other.socultvalue){
+            df = (Math.abs(me.socultvalue - other.socultvalue))/((me.socultvalue + other.socultvalue)/2);
+            totalScore+=50;
+            currentScore += 50*(1-df);
+        }
+
+        if(me.projectsinterestvalue && other.projectsinterestvalue){
+            df = (Math.abs(me.projectsinterestvalue - other.projectsinterestvalue))/((me.projectsinterestvalue + other.projectsinterestvalue)/2);
+            totalScore+=50;
+            currentScore += 50*(1-df);
+        }
+
+        if(me.programmingexperiancevalue && other.programmingexperiancevalue){
+            df = (Math.abs(me.programmingexperiancevalue - other.programmingexperiancevalue))/((me.programmingexperiancevalue + other.programmingexperiancevalue)/2);
+            totalScore+=50;
+            currentScore += 50*(1-df);
+        }
+
+        // now comes the hobies and competitive Exams sets
+        // we have to calculate the no. of common elements in these sets
+
+        // Hobbies
+        var common=0;
+        var n1 = me.hobbies.length;
+        var n2 = other.hobbies.length;
+
+        for(var i=0;i<n1;i++){
+            if(other.hobbies.includes( me.hobbies[i]) ) common++;
+        }
+        totalScore+=150;
+        currentScore += 150 * (2*common)/( Math.max(1, n1+n2) );
+        console.log( other.username ,"hobbies matching, common= ",common , " n1=",n1 , " n2=", n2 );
+
+        // competitive Exams
+        common=0;
+        n1 = me.competitiveexamsorder.length;
+        n2 = other.competitiveexamsorder.length;
+        for(i=0;i<n1;i++){
+            if(other.competitiveexamsorder.includes( me.competitiveexamsorder[i]) ) common++;
+        }
+        totalScore+=150;
+        currentScore += 150 * (2*common)/( Math.max(1, n1+n2) );
+        console.log( other.username ,"competitive Exams matching, common= ",common , " n1=",n1 , " n2=", n2 );
+
+
+        temp = Math.floor( (10000*currentScore)/totalScore );
+        obj.percentage = temp/100 ;
         callback();
     }
 
