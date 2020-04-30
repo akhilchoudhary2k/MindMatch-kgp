@@ -4,6 +4,16 @@ html {
 body{
     min-height:100%;
 }
+
+.larger {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}
+
+.hovercolor:hover {
+    color: yellow !important;
+}
+
 .bg-light{
     background-color: #f8f9fa!important
 }
@@ -41,7 +51,7 @@ label{
     font-weight: 600;
 }
 .navbar-brand{
-    margin-right: 6%;
+    margin-right: 3%;
 }
 .left{
     margin-right: 15%;
