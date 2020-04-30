@@ -5,6 +5,46 @@ body{
     min-height:100%;
 }
 
+.topdiv img{
+    height: 100%;
+    width: 100%;
+    display:block;
+}
+.homebuttom{
+    display: block;
+    text-align:center;
+    width: 300px;
+    height: 70px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.btn-group{
+    margin-top:150px;
+    margin-bottom: 90px;
+    text-align:center;
+}
+
+.logo{
+    font-family: 'Lobster Two', cursive;
+    font-weight: 1000;
+    color: white;
+    font-size: 100px;
+}
+
+.my-container{
+    width:40%;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.logo-container{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .larger {
     font-size: 20px !important;
     font-weight: 600 !important;
@@ -50,6 +90,16 @@ input[type=password]{
 label{
     font-weight: 600;
 }
+.navbar {
+    z-index: 10;
+    /* overflow: hidden; */
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+}
 .navbar-brand{
     margin-right: 3%;
 }
@@ -58,6 +108,14 @@ label{
 }
 
 footer p {
-    margin-top: 10%;
+    /* margin-top: 10%; */
     text-align: center;
+}
+
+.footer-container{
+    font-size: 25px;
+    color: white;
+    background-color: #343a40;
+    padding-top: 100px;
+    padding-bottom: 50px;
 }
