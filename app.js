@@ -28,7 +28,9 @@
     app.use(passport.session());
 
     // making a local database named mindmatchDB
-    mongoose.connect("mongodb://localhost:27017/MindMatchDB", {
+    // mongoose.connect("mongodb://localhost:27017/MindMatchDB", {
+    var myurl = "" + process.env.DATABASE_URL ;
+    mongoose.connect(myurl, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
@@ -453,7 +455,7 @@
                 cgpa: req.body.cgpa,
                 department: req.body.department,
                 hometown: req.body.hometown,
-                coaching: req.body.coaching,
+                // coaching: req.body.coaching,
                 fromkota: req.body.fromkota,
                 eaa: req.body.eaa,
                 sportsvalue: req.body.sportsvalue,
@@ -548,8 +550,6 @@
         totalScore+=50;
         if( _.lowerCase(me.hometown)==_.lowerCase(other.hometown) ) currentScore+=50;
 
-        totalScore+=10;
-        if( me.coaching == other.coaching ) currentScore+=10;
 
         totalScore+=10;
         if( me.fromkota == other.fromkota ) currentScore+=10;
@@ -617,28 +617,32 @@
         // we have to calculate the no. of common elements in these sets
 
         // Hobbies
-        var common=0;
-        var n1 = me.hobbies.length;
-        var n2 = other.hobbies.length;
+        var common, n1,n2;
+        if(me.hobbies && other.hobbies){
+             common=0;
+             n1 = me.hobbies.length;
+             n2 = other.hobbies.length;
 
-        for(var i=0;i<n1;i++){
-            if(other.hobbies.includes( me.hobbies[i]) ) common++;
+            for(var i=0;i<n1;i++){
+                if(other.hobbies.includes( me.hobbies[i]) ) common++;
+            }
+            totalScore+=150;
+            currentScore += 150 * (2*common)/( Math.max(1, n1+n2) );
+            console.log( other.username ,"hobbies matching, common= ",common , " n1=",n1 , " n2=", n2 );
         }
-        totalScore+=150;
-        currentScore += 150 * (2*common)/( Math.max(1, n1+n2) );
-        console.log( other.username ,"hobbies matching, common= ",common , " n1=",n1 , " n2=", n2 );
 
         // competitive Exams
-        common=0;
-        n1 = me.competitiveexamsorder.length;
-        n2 = other.competitiveexamsorder.length;
-        for(i=0;i<n1;i++){
-            if(other.competitiveexamsorder.includes( me.competitiveexamsorder[i]) ) common++;
+        if(me.competitiveexamsorder && other.competitiveexamsorder){
+            common=0;
+            n1 = me.competitiveexamsorder.length;
+            n2 = other.competitiveexamsorder.length;
+            for(var j=0;j<n1;j++){
+                if(other.competitiveexamsorder.includes( me.competitiveexamsorder[j]) ) common++;
+            }
+            totalScore+=150;
+            currentScore += 150 * (2*common)/( Math.max(1, n1+n2) );
+            console.log( other.username ,"competitive Exams matching, common= ",common , " n1=",n1 , " n2=", n2 );
         }
-        totalScore+=150;
-        currentScore += 150 * (2*common)/( Math.max(1, n1+n2) );
-        console.log( other.username ,"competitive Exams matching, common= ",common , " n1=",n1 , " n2=", n2 );
-
 
         temp = Math.floor( (10000*currentScore)/totalScore );
         obj.percentage = temp/100 ;
@@ -905,8 +909,13 @@
 
     });
 
-
     //start listning (just to turn on the server)
-    app.listen(process.env.PORT || 5000, function() {
-        console.log("server started on port 3000");
+
+    let port = process.env.PORT;
+    if(port == null || port == ""){
+        port = 3000;
+    }
+
+    app.listen(port, function() {
+        console.log("server started on port" , port);
     });

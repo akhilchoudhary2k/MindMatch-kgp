@@ -169,13 +169,19 @@
 
 
         <div class="form-row">
+
+
+
             <div class="col-md-3">
-                <label>Coaching</label>
+                <label>Type of Course</label>
             </div>
             <div class="form-group col-md-3">
-                <% var coachingfiller = user.todisplay.includes("coaching") ? coachingfiller = "" + user.coaching : "HIDDEN"  %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=coachingfiller%>  >
+                <% var filler = user.todisplay.includes("coursetype") ? filler = "" + user.coursetype : "HIDDEN"  %>
+                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
             </div>
+
+
+
             <div class="col-md-3">
                 <label>Kotaite</label>
             </div>
@@ -259,13 +265,17 @@
 
 
         <div class="form-row">
+
+
             <div class="col-md-3">
-                <label>Type of course</label>
+                <label>Coding Skills</label>
             </div>
             <div class="form-group col-md-3">
-                <% var filler = user.todisplay.includes("coursetype") ? filler = "" + user.coursetype : "HIDDEN"  %>
+                <% var filler = user.todisplay.includes("programmingexperiancevalue") ? filler = "" + user.programmingexperiancevalue : "HIDDEN"  %>
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
             </div>
+
+
             <div class="col-md-3">
                 <label>Interest in Project</label>
             </div>
@@ -277,17 +287,11 @@
 
 
         <div class="form-row">
-            <div class="col-md-3">
-                <label>Coding Skills</label>
-            </div>
-            <div class="form-group col-md-3">
-                <% var filler = user.todisplay.includes("programmingexperiancevalue") ? filler = "" + user.programmingexperiancevalue : "HIDDEN"  %>
-                <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
-            </div>
+
             <div class="col-md-3">
                 <label>Future Plan</label>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-9">
                 <% var filler = user.todisplay.includes("futureorientationorder") ? filler = "" + user.futureorientationorder : "HIDDEN"  %>
                 <input type="text" class="form-control" name="lname" disabled placeholder= <%=filler%>  >
             </div>
