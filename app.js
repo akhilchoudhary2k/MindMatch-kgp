@@ -102,11 +102,15 @@
     passport.deserializeUser(User.deserializeUser());
 
 
-    //get request to server
+    //get request to server for home page
     app.get("/", function(req, res) {
         //sending information from server side
         res.render("index", {});
     });
+
+
+
+
     app.get("/login", function(req, res) {
         var message = "";
         res.render('login', {
@@ -203,9 +207,7 @@
     app.get("/UserHome", function(req, res) {
         if (req.isAuthenticated()) {
             res.locals.username = req.user.username;
-            res.render('UserHome', {
-                user: req.user
-            });
+            res.render('UserHome', {user: req.user});
         } else {
             res.redirect('/login');
         }
@@ -423,9 +425,7 @@
             // req.user -> who made this get request
             // req.params.userName -> whose profile should be displayed
 
-            User.findOne({
-                username: req.params.userName
-            }, function(err, foundUser) {
+            User.findOne({username: req.params.userName}, function(err, foundUser) {
                 if (err) console.log(err);
                 else {
                     if (foundUser) res.render('User-profile', {
