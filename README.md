@@ -16,7 +16,8 @@ This is particularly for student community so it matches them on basis of their 
    So they are not visible in the code.
 5. Therefore you need to define your own secret hashing key <br>
    In **app.js** **Line number23**  <br>
-   >replace ```secret: process.env.SECRET_KEY,``` with ```secret: <your custom key>,```
+   >replace ```secret: process.env.SECRET_KEY,``` <br>
+   >with    ```secret: <your custom key>,```
 6. Now you have to create your local **mongoDB** database <br>
    First install mongoDB on your PC <br>
    Then in **app.js** 
