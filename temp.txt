@@ -1,7 +1,0 @@
-
-
-
-<%# <form action=<%= url %> method="get">
-    <button <%= show ? "" : "disabled"  %> type="button" class="btn btn-primary col-md-12" >Send a Message</button>
-    <small class="form-text text-muted" >You can use this only after connecting</small>
-</form> %>
