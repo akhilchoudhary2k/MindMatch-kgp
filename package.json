@@ -19,7 +19,7 @@
     "express-session": "^1.17.1",
     "lodash": "^4.17.21",
     "md5": "^2.2.1",
-    "mongoose": "^5.9.4",
+    "mongoose": "^5.13.15",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
