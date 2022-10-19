@@ -19,8 +19,9 @@
     }));
     app.use(express.static("public")); // to correctly send the images and css files
 
+    var running_locally = false;
     app.use(session({
-        secret: process.env.SECRET_KEY,
+        secret: (running_locally ? "bla_bla_secret" : process.env.SECRET_KEY),
         resave: false,
         saveUninitialized: false
     }));
@@ -28,9 +29,11 @@
     app.use(passport.session());
 
     // making a local database named mindmatchDB
-    // mongoose.connect("mongodb://localhost:27017/MindMatchDB", {
-    var myurl = "" + process.env.DATABASE_URL ;
-    mongoose.connect(myurl, {
+    var local_DB_URL = "mongodb://localhost:27017/MindMatchDB";
+    var hosted_DB_URL = "" + process.env.DATABASE_URL;
+    var DB_URL = (running_locally ? local_DB_URL : hosted_DB_URL);
+
+    mongoose.connect(DB_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
