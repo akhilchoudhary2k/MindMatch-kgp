@@ -18,7 +18,7 @@ This is particularly for student community so it matches them on basis of their 
    >`$ mongod`
 6. Create your local mongoDB database named `MindMatchDB`
    > `$ mongo` <br>
-   > `> use db MindMatchDB`
+   > `> use MindMatchDB`
 7. Run the repo code
    > `node app.js`
 8. Now go to `http://localhost:3000/` and the app is ready to use.
