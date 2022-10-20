@@ -220,11 +220,11 @@
     app.post("/register", function(req, res) {
     var schema = new passwordValidator();
     schema
-    .is().min(8)                                    // Minimum length 8
-    .is().max(100)                                  // Maximum length 100
+    .is().min(5)                                    // Minimum length 5
+    .is().max(10)                                   // Maximum length 10
     .has().uppercase()                              // Must have uppercase letters
     .has().lowercase()                              // Must have lowercase letters
-    .has().digits(2)                                // Must have at least 2 digits
+    .has().digits(1)                                // Must have at least 1 digits
     .has().not().spaces()                           // Should not have spaces
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
     
@@ -262,7 +262,7 @@
         }
     }
     else {
-        var message = "Stronger Password Needed";
+        var message = "Stronger Password Needed [Min length:5 & must include lowercase, uppercase, digit]";
         res.render('register', {
             message: message
         });
