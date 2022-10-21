@@ -9,6 +9,7 @@
     const passport = require("passport");
     const passportLocalMongoose = require('passport-local-mongoose');
     const _ = require('lodash');
+    var passwordValidator = require('password-validator');
 
     //setup server
     const app = express();
@@ -217,7 +218,17 @@
     });
 
     app.post("/register", function(req, res) {
-
+    var schema = new passwordValidator();
+    schema
+    .is().min(5)                                    // Minimum length 5
+    .is().max(10)                                   // Maximum length 10
+    .has().uppercase()                              // Must have uppercase letters
+    .has().lowercase()                              // Must have lowercase letters
+    .has().digits(1)                                // Must have at least 1 digits
+    .has().not().spaces()                           // Should not have spaces
+    .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
+    
+    if(schema.validate(req.body.password2)){
         if (req.body.password != req.body.password2) {
             var message = "Passwords do not match";
             res.render('register', {
@@ -259,13 +270,18 @@
                 });
             }
         }
+    }
+    else {
+        var message = "Stronger Password Needed [Min length:5 & must include lowercase, uppercase, digit]";
+        res.render('register', {
+            message: message
+        });
+    }
     });
 
     app.post("/adminlogin", function(req, res) {
 
     });
-
-
 
     // routes when the user is logged in
 
