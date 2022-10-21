@@ -217,7 +217,6 @@
     });
 
     app.post("/register", function(req, res) {
-        // console.log(req.body);
 
         if (req.body.password != req.body.password2) {
             var message = "Passwords do not match";
@@ -225,31 +224,40 @@
                 message: message
             });
         } else {
-            User.register({
-                username: req.body.username
-            }, req.body.password, function(err, user) {
-                if (err) {
-                    console.log(err.message);
-                    var message = err.message;
-                    res.render("register", {
-                        message: message
-                    });
-                } else {
-                    // console.log(req.body);
-                    User.updateOne({
-                        _id: user._id
-                    }, {
-                        email: req.body.email,
-                        fname: req.body.name,
-                        isAdmin: false
-                    }, function(err) {
-                        if (err) console.log(err);
-                    });
-                    passport.authenticate("local")(req, res, function() {
-                        res.redirect("/UserHome");
-                    });
-                }
-            });
+            var trimmedUsername = req.body.username.trim();
+            if(trimmedUsername.length > 4) {
+                User.register({
+                    username: req.body.username
+                }, req.body.password, function(err, user) {
+                    if (err) {
+                        console.log(err.message);
+                        var message = err.message;
+                        res.render("register", {
+                            message: message
+                        });
+                    } else {
+                        // console.log(req.body);
+                        User.updateOne({
+                            _id: user._id
+                        }, {
+                            email: req.body.email,
+                            fname: req.body.name,
+                            isAdmin: false
+                        }, function(err) {
+                            if (err) console.log(err);
+                        });
+                        passport.authenticate("local")(req, res, function() {
+                            res.redirect("/UserHome");
+                        });
+                    }
+                });
+            }
+            else {
+                var message = "username should be more than 4 characters";
+                res.render('register', {
+                    message: message
+                });
+            }
         }
     });
 
