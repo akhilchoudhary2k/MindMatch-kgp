@@ -237,7 +237,7 @@
         } else {
             if(req.body.username.indexOf(' ') >= 0) {
                 var message = "username should not contain whitespace";
-                res.render('register', {
+                return res.render('register', {
                     message: message
                 });
             }
