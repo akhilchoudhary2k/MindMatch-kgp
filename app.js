@@ -143,8 +143,10 @@
     });
 
     app.get("/logout", function(req, res) {
-        req.logout();
-        res.redirect("/");
+        req.logout(function(err) {
+          if (err) { return next(err); }
+          res.redirect('/');
+        });
     });
 
     app.get("/AdminHome", function(req, res) {
@@ -542,8 +544,10 @@
                             ind++;
                             var obj = {username: user.username, fname: user.fname, percentage: 0};
                             getpercentage( req.user , user, obj, function(){
+                              if(obj.percentage >= 20){
                                 array.push( obj );
-                            } );
+                              }
+                            });
                             if(ind == found.length-2 ){
                                 // sort the array in decreasing order of % match value
                                 array.sort(function(a,b){
