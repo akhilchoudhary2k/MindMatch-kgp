@@ -143,8 +143,10 @@
     });
 
     app.get("/logout", function(req, res) {
-        req.logout();
-        res.redirect("/");
+        req.logout(function(err) {
+          if (err) { return next(err); }
+          res.redirect('/');
+        });
     });
 
     app.get("/AdminHome", function(req, res) {
@@ -227,7 +229,7 @@
     .has().digits(1)                                // Must have at least 1 digits
     .has().not().spaces()                           // Should not have spaces
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
-    
+
     if(schema.validate(req.body.password2)){
         if (req.body.password != req.body.password2) {
             var message = "Passwords do not match";
@@ -542,8 +544,10 @@
                             ind++;
                             var obj = {username: user.username, fname: user.fname, percentage: 0};
                             getpercentage( req.user , user, obj, function(){
+                              if(obj.percentage >= 20){
                                 array.push( obj );
-                            } );
+                              }
+                            });
                             if(ind == found.length-2 ){
                                 // sort the array in decreasing order of % match value
                                 array.sort(function(a,b){
