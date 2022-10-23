@@ -229,7 +229,7 @@
     .has().digits(1)                                // Must have at least 1 digits
     .has().not().spaces()                           // Should not have spaces
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
-
+    
     if(schema.validate(req.body.password2)){
         if (req.body.password != req.body.password2) {
             var message = "Passwords do not match";
