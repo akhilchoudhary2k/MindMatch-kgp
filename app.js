@@ -20,7 +20,7 @@
     }));
     app.use(express.static("public")); // to correctly send the images and css files
 
-    var running_locally = false;
+    var running_locally = true;
     app.use(session({
         secret: (running_locally ? "bla_bla_secret" : process.env.SECRET_KEY),
         resave: false,
@@ -37,6 +37,10 @@
     mongoose.connect(DB_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true
+    }).then(() => {
+        console.log("Connected to DB");
+    }).catch((err) => {
+        console.log("ERROR: ", err.message);
     });
     // mongoose.set("useCreateIndex", true);
 
@@ -180,34 +184,55 @@
         }
     });
 
-    app.post("/login", function(req, res) {
+app.post("/login", async function (req, res, next) {
+    try {
+
+
         const user = new User({
             username: req.body.username,
             password: req.body.password
         });
-        User.findOne({
-            username: req.body.username
-        }, function(err, found) {
-            if (!found) {
-                var message = "No such username exists";
-                res.render('login', {
-                    message: message
-                });
-            } else {
-                // console.log(req.body);
-                req.login(user, function(err) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        passport.authenticate("local")(req, res, function() {
-                            if (req.body.username === 'admin') res.redirect("/AdminHome");
-                            else res.redirect("/UserHome");
-                        });
-                    }
-                });
+    
+   
+        const found = await User.findOne({ username: req.body.username })
+        if (!found) {
+            var message = "No such username exists";
+           return res.render('login', {
+                message: message
+            });
+        } 
+          
+        passport.authenticate("local",
+            (err, user, options) => {
+                console.log(err,user)
+                if (user) {
+                    
+                    req.login(user, (error) => {
+                        if (error) {
+                           res.render("login",{
+                            message:error.message
+                        })
+                          
+                        } else {
 
-            }
-        });
+                            if (req.body.username === 'admin') res.redirect("/AdminHome");
+                                                        else res.redirect("/UserHome");
+                        };
+                    });
+                }
+                else {
+                    res.render("login", {
+                        message: "User or Password is incorrect"
+                    });
+                }
+            })(req, res, next);
+
+            
+    } catch (e) {
+        console.log(e);
+        }
+      
+
     });
 
     app.get("/UserHome", function(req, res) {
