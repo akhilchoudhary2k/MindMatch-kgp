@@ -313,6 +313,9 @@ app.post("/adminlogin", function (req, res) {
 // routes when the user is logged in
 
 app.get("/chat/:reciever", function (req, res) {
+    if(req.user.username != "admin" && req.params.userName == 'admin'){
+        return res.redirect("/UserHome");
+    }
     if (req.isAuthenticated()) {
         console.log("GET req. from:" + req.user.username + " to:" + req.params.reciever);
         res.locals.username = req.user.username; // just to put username in the navbar
@@ -337,6 +340,9 @@ app.get("/chat/:reciever", function (req, res) {
 });
 
 app.post("/chat/:reciever", function (req, res) {
+    if(req.user.username != "admin" && req.params.userName == 'admin'){
+        return res.redirect("/UserHome");
+    }
     if (req.isAuthenticated()) {
         var array = [];
         console.log("POST req. from:" + req.user.username + " to:" + req.params.reciever);
@@ -474,6 +480,9 @@ app.post("/chat/:reciever", function (req, res) {
 });
 
 app.get("/profile/:userName", function (req, res) {
+    if(req.user.username != "admin" && req.params.userName == 'admin'){
+        return res.redirect("/UserHome");
+    }
     if (req.isAuthenticated()) {
         res.locals.username = req.user.username; // just to put username in the navbar
         // req.user -> who made this get request
