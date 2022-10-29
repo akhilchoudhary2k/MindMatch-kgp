@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public")); // to correctly send the images and css files
 
-var running_locally = false;
+var running_locally = true;
 app.use(session({
     secret: (running_locally ? "bla_bla_secret" : process.env.SECRET_KEY),
     resave: false,
@@ -186,6 +186,7 @@ app.get("/AdminHome", function (req, res) {
 
 app.post("/login", async function (req, res, next) {
     try {
+        req.body.username=req.body.username.toLowerCase();
         const user = new User({
             username: req.body.username,
             password: req.body.password
@@ -238,6 +239,8 @@ app.get("/UserHome", function (req, res) {
 });
 
 app.post("/register", function (req, res) {
+    
+    req.body.username=req.body.username.toLowerCase();
     var schema = new passwordValidator();
     schema
         .is().min(5)                                    // Minimum length 5
@@ -247,7 +250,6 @@ app.post("/register", function (req, res) {
         .has().digits(1)                                // Must have at least 1 digits
         .has().not().spaces()                           // Should not have spaces
         .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
-
     if (schema.validate(req.body.password2)) {
         if (req.body.password != req.body.password2) {
             var message = "Passwords do not match";
@@ -264,7 +266,7 @@ app.post("/register", function (req, res) {
             var trimmedUsername = req.body.username.trim();
             if (trimmedUsername.length >= 4) {
                 User.register({
-                    username: req.body.username
+                    username: req.body.username,
                 }, req.body.password, function (err, user) {
                     if (err) {
                         console.log(err.message);
