@@ -10,6 +10,9 @@ const passport = require("passport");
 const passportLocalMongoose = require('passport-local-mongoose');
 const _ = require('lodash');
 var passwordValidator = require('password-validator');
+const { Octokit } = require("@octokit/core");
+const { forEach } = require('lodash');
+const octokit = new Octokit({ auth: process.env.AUTH_TOKEN });
 
 //setup server
 const app = express();
@@ -142,6 +145,18 @@ app.get("/about", function (req, res) {
 app.get("/contact", function (req, res) {
     res.render('contact', {});
 });
+
+
+app.get("/contributors", async function(req, res){
+    const response = await octokit.request("GET /repos/{owner}/{repo}/contributors", {
+        owner: "akhilchoudhary2k",
+        repo: "MindMatch-kgp",
+      });
+    res.render('contributors', {info_list: response.data});
+
+});
+
+
 app.get("/help", function (req, res) {
     res.send("Will make it");
 });
