@@ -764,8 +764,7 @@ app.post("/search", function (req, res) {
         console.log(wordsArray);
 
         var resultArray = [];
-        User.find({}, function (err, found) {
-
+        User.find({username:{$nin:['admin']}}, function (err, found) {
             doWork(found, resultArray, wordsArray, function () {
                 console.log("render the results page");
                 res.render('search-results', {
