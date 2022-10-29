@@ -12,6 +12,7 @@
   "author": "Akhil 18CS10070",
   "license": "ISC",
   "dependencies": {
+    "@octokit/core": "^4.1.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.7",
