@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public")); // to correctly send the images and css files
 
-var running_locally = false;
+var running_locally = true;
 app.use(session({
     secret: (running_locally ? "bla_bla_secret" : process.env.SECRET_KEY),
     resave: false,
@@ -755,8 +755,7 @@ app.post("/search", function (req, res) {
         console.log(wordsArray);
 
         var resultArray = [];
-        User.find({}, function (err, found) {
-
+        User.find({username:{$nin:['admin']}}, function (err, found) {
             doWork(found, resultArray, wordsArray, function () {
                 console.log("render the results page");
                 res.render('search-results', {
