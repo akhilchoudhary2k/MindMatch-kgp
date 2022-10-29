@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public")); // to correctly send the images and css files
 
-var running_locally = true;
+var running_locally = false;
 app.use(session({
     secret: (running_locally ? "bla_bla_secret" : process.env.SECRET_KEY),
     resave: false,
