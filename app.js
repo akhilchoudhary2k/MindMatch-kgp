@@ -253,6 +253,26 @@ app.get("/UserHome", function (req, res) {
     }
 });
 
+app.get("/UserHome", async function(req, res) {
+    let fullNames = {};
+
+    function getFullName(username){
+        User.findOne({
+            username: username
+        }, function(err, found) {
+            if(found) {
+            return [found.fname, found.lname]
+            }
+        });
+    }
+
+    for (i in username.collections){
+        fullNames[i] = await getFullName(username.collections[i]);
+    }
+
+    res.render('UserHome', fullNames);
+});
+
 app.post("/register", function (req, res) {
     req.body.username=req.body.username.toLowerCase();
     var schema = new passwordValidator();
