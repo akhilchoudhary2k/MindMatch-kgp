@@ -255,7 +255,6 @@ app.get("/UserHome", function (req, res) {
 
 app.get("/UserHome", async function(req, res) {
     let fullNames = {};
-
     function getFullName(username){
         User.findOne({
             username: username
@@ -265,11 +264,17 @@ app.get("/UserHome", async function(req, res) {
             }
         });
     }
-
-    for (i in username.collections){
-        fullNames[i] = await getFullName(username.collections[i]);
+    for (i in username.connections){
+        var nullCheck = await getFullName(username.connections[i]);
+        //replace all null values with "N/A"
+        if (nullCheck[0] === null){
+            nullCheck[0] = "N/A";
+        }
+        if (nullCheck[1] === null){
+            nullCheck[1] = "N/A";
+        }
+        fullNames[i] = nullCheck;
     }
-
     res.render('UserHome', fullNames);
 });
 
