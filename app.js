@@ -264,7 +264,7 @@ app.get("/UserHome", async function(req, res) {
             }
         });
     }
-    for (i in username.connections){
+    for (let i in username.connections){
         var nullCheck = await getFullName(username.connections[i]);
         //replace all null values with "N/A"
         if (nullCheck[0] === null){
