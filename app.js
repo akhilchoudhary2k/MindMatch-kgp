@@ -244,14 +244,38 @@ app.post("/login", async function (req, res, next) {
     }
 });
 
-app.get("/UserHome", function (req, res) {
+app.get("/UserHome", async function (req, res) {
     if (req.isAuthenticated()) {
         res.locals.username = req.user.username;
         res.render('UserHome', { user: req.user });
+
+        let fullNames = {};
+        function getFullName(username){
+            User.findOne({
+                username: username
+            }, function(err, found) {
+                if(found) {
+                return [found.fname, found.lname]
+                }
+            });
+        }
+        for (let i in username.connections){
+            var nullCheck = await getFullName(username.connections[i]);
+            //replace all null values with "N/A"
+            if (nullCheck[0] === null){
+                nullCheck[0] = "N/A";
+            }
+            if (nullCheck[1] === null){
+                nullCheck[1] = "N/A";
+            }
+            fullNames[i] = nullCheck;
+        }
+        res.render('UserHome', fullNames);
     } else {
         res.redirect('/login');
     }
 });
+
 
 app.post("/register", function (req, res) {
     req.body.username=req.body.username.toLowerCase();

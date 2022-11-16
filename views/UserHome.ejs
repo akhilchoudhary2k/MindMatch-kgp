@@ -37,8 +37,8 @@
                 <tr>
                     <th scope="row"> <%= i+1 %> </th>
                     <td> <img src="/images/o.png" style="height:25px; width:25px;"> <b><%=user.connections[i]%></b> </td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td><b><%=fullNames[i][0]%></b></td>
+                    <td><b><%=fullNames[i][1]%></b></td>
                     <% var link = "/profile/" + user.connections[i] %>
                     <% var link2 = "/chat/"+ user.connections[i] %>
                     <td style="width:300px;">
